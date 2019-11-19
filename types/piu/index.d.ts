@@ -44,7 +44,7 @@ declare namespace piu {
     ): void;
     static template(
       anonymous: (param: any) => ContentConstructorParam
-    ): typeof Template;
+    ): ContentConstructor;
 
     readonly previous: Content | null;
     readonly next: Content | null;
@@ -80,11 +80,14 @@ declare namespace piu {
     width: number;
     height: number;
   }
+  interface ContentConstructor {
+    new (dictionary?: ContentConstructorParam): Content;
+    template(dictionary: ContentConstructorParam | any): ContentConstructor;
+  }
   class Template extends Content {
     constructor(behavior: any, param: any);
     constructor(param: any);
   }
-  type Skin = TextureSkin | ColorSkin;
   class Style {
     constructor(dictionary: StyleConstructorParam);
     measure(string: string): Size;
@@ -96,14 +99,13 @@ declare namespace piu {
     readonly width: number;
     static template(dictionary: TextureConstructorParam): TextureConstructor;
   }
-  class ColorSkin {
+  class Skin {
+    constructor(dictionary: TextureSkinConstructorParam);
     constructor(dictionary: ColorSkinConstructorParam);
+    static template(dictionary: TextureSkinConstructorParam | ColorSkinConstructorParam): SkinConstructor;
     borders: Coordinates;
     fill: Color | Color[];
     stroke: Color | Color[];
-  }
-  class TextureSkin {
-    constructor(dictionary: TextureSkinConstructorParam);
     texture: Texture;
     color: Color;
     bounds: Bounds;
@@ -301,7 +303,8 @@ declare namespace piu {
     ): Timeline;
   }
   interface ContentConstructorParam
-    extends Position,
+    extends
+      Coordinates,
       Bounds,
       ContentState,
       TimeProperty,
@@ -362,7 +365,8 @@ declare namespace piu {
     string: string;
   }
   interface ContainerConstructorParam extends ContentConstructorParam {
-    clip: boolean;
+    clip?: boolean;
+    contents: Content[];
   }
   interface ScrollerConstructorParam extends ContainerConstructorParam {
     loop: boolean;
@@ -390,9 +394,14 @@ declare namespace piu {
     new (name: string, dictionary: ContentConstructorParam): Content;
   }
   interface TextureConstructor {
-    new (dictionary: TextureConstructorParam): Texture;
+    new (dictionary?: TextureConstructorParam): Texture;
     template(dictionary: TextureConstructorParam | any): TextureConstructor;
   }
+  interface SkinConstructor {
+    new (dictionary?: SkinConstructorParam): Skin;
+    template(dictionary: SkinConstructorParam | any): SkinConstructor;
+  }
+  type SkinConstructorParam = ColorSkinConstructorParam | TextureSkinConstructorParam;
   interface TextStyleConstructorParam extends StyleConstructorParamBase {
     leading: number;
     right: number;
