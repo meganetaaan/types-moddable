@@ -1,2 +1,2 @@
 import { Texture } from "./index";
-export = Texture;
+export default Texture;
