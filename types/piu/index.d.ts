@@ -1,164 +1,186 @@
 declare namespace piu {
   class Behavior {}
   class Content {
-    constructor(name: string, dictionary: ContentConstructorParam);
-    adjust(x: number, y: number): void;
-    bubble(id: string, ...extras: any[]): void;
-    captureTouch(id: string, x: number, y: number, ticks: number): void;
-    defer(id: string, ...extras: any[]): void;
-    delegate(id: string, ...extras: any[]): void;
-    distribute(id: string, ...extras: any[]): void;
-    focus(): void;
-    hit(x: number, y: number): Content | undefined;
-    measure(): Size;
-    moveBy(x: number, y: number): void;
-    render(): void;
-    sizeBy(width: number, height: number): void;
-    start(): void;
-    stop(): void;
-    onCreate(content: Content, data: object, context: object): void;
-    onDisplaying(content: Content): void;
-    onFinished(content: Content): void;
-    onTimeChanged(content: Content): void;
-    onTouchBegan(
+    public constructor(name: string, dictionary: ContentConstructorParam);
+    public adjust(x: number, y: number): void;
+    public bubble(id: string, ...extras: any[]): void;
+    public captureTouch(id: string, x: number, y: number, ticks: number): void;
+    public defer(id: string, ...extras: any[]): void;
+    public delegate(id: string, ...extras: any[]): void;
+    public distribute(id: string, ...extras: any[]): void;
+    public focus(): void;
+    public hit(x: number, y: number): Content | undefined;
+    public measure(): Size;
+    public moveBy(x: number, y: number): void;
+    public render(): void;
+    public sizeBy(width: number, height: number): void;
+    public start(): void;
+    public stop(): void;
+    public onCreate(content: Content, data: object, context: object): void;
+    public onDisplaying(content: Content): void;
+    public onFinished(content: Content): void;
+    public onTimeChanged(content: Content): void;
+    public onTouchBegan(
       content: Content,
       id: string,
       x: number,
       y: number,
       ticks: number
     ): void;
-    onTouchCancelled(content: Content, id: string): void;
-    onTouchended(
+    public onTouchCancelled(content: Content, id: string): void;
+    public onTouchended(
       content: Content,
       id: string,
       x: number,
       y: number,
       ticks: number
     ): void;
-    onTouchMoved(
+    public onTouchMoved(
       content: Content,
       id: string,
       x: number,
       y: number,
       ticks: number
     ): void;
-    static template(
+    public static template(
       anonymous: (param: any) => ContentConstructorParam
     ): ContentConstructor;
 
-    readonly previous: Content | null;
-    readonly next: Content | null;
-    readonly application: Application;
-    readonly container: Container | null;
-    readonly index: number;
-    name: string;
-    active: boolean;
-    anchor: string;
-    behavior: object;
-    coordinates: Coordinates;
-    bounds: Bounds;
-    backgroundTouch: boolean;
-    exclusiveTouch: boolean;
-    multipleTouch: boolean;
+    public readonly previous: Content | null;
+    public readonly next: Content | null;
+    public readonly application: Application;
+    public readonly container: Container | null;
+    public readonly index: number;
+    public name: string;
+    public active: boolean;
+    public anchor: string;
+    public behavior: object;
+    public coordinates: Coordinates;
+    public bounds: Bounds;
+    public backgroundTouch: boolean;
+    public exclusiveTouch: boolean;
+    public multipleTouch: boolean;
 
-    time: number;
-    duration: number;
-    fraction: number;
-    interval: number;
-    loop: boolean;
+    public time: number;
+    public duration: number;
+    public fraction: number;
+    public interval: number;
+    public loop: boolean;
 
-    offset: undefined | Position;
-    position: undefined | Position;
-    size: Size;
-    state: number;
-    variant: number;
-    skin: Skin | null;
-    style: Style | null;
-    visible: boolean;
-    x: number;
-    y: number;
-    width: number;
-    height: number;
+    public offset: undefined | Position;
+    public position: undefined | Position;
+    public size: Size;
+    public state: number;
+    public variant: number;
+    public skin: Skin | null;
+    public style: Style | null;
+    public visible: boolean;
+    public x: number;
+    public y: number;
+    public width: number;
+    public height: number;
   }
   interface ContentConstructor {
     new (dictionary?: ContentConstructorParam): Content;
     template(dictionary: ContentConstructorParam | any): ContentConstructor;
   }
   class Template extends Content {
-    constructor(behavior: any, param: any);
-    constructor(param: any);
+    public constructor(behavior: any, param: any);
+    public constructor(param: any);
   }
   class Style {
-    constructor(dictionary: StyleConstructorParam);
-    measure(string: string): Size;
+    public constructor(dictionary: StyleConstructorParam);
+    public measure(string: string): Size;
   }
   class Texture {
-    constructor(path: string);
-    constructor(dictionary: TextureConstructorParam);
-    readonly height: number;
-    readonly width: number;
-    static template(dictionary: TextureConstructorParam): TextureConstructor;
+    public constructor(path: string);
+    public constructor(dictionary: TextureConstructorParam);
+    public readonly height: number;
+    public readonly width: number;
+    public static template(
+      dictionary: TextureConstructorParam
+    ): TextureConstructor;
   }
   class Skin {
-    constructor(dictionary: TextureSkinConstructorParam);
-    constructor(dictionary: ColorSkinConstructorParam);
-    static template(dictionary: TextureSkinConstructorParam | ColorSkinConstructorParam): SkinConstructor;
-    borders: Coordinates;
-    fill: Color | Color[];
-    stroke: Color | Color[];
-    texture: Texture;
-    color: Color;
-    bounds: Bounds;
-    height: number;
-    width: number;
-    states?: number;
-    variants?: number;
-    tiles?: Coordinates;
-    top?: number;
-    right?: number;
-    bottom?: number;
-    left?: number;
+    public constructor(dictionary: TextureSkinConstructorParam);
+    public constructor(dictionary: ColorSkinConstructorParam);
+    public static template(
+      dictionary: TextureSkinConstructorParam | ColorSkinConstructorParam
+    ): SkinConstructor;
+    public borders: Coordinates;
+    public fill: Color | Color[];
+    public stroke: Color | Color[];
+    public texture: Texture;
+    public color: Color;
+    public bounds: Bounds;
+    public height: number;
+    public width: number;
+    public states?: number;
+    public variants?: number;
+    public tiles?: Coordinates;
+    public top?: number;
+    public right?: number;
+    public bottom?: number;
+    public left?: number;
   }
   class Transition {
-    constructor(duration: number);
-    onBegin(container: Container, ...extras: any[]): void;
-    onEnd(container: Container, ...extras: any[]): void;
-    onStep(fraction: number): void;
+    public constructor(duration: number);
+    public onBegin(container: Container, ...extras: any[]): void;
+    public onEnd(container: Container, ...extras: any[]): void;
+    public onStep(fraction: number): void;
   }
   class Container extends Content {
-    constructor(behaviorData: any, dictionary: ContainerConstructorParam);
-    clip: boolean;
-    readonly first: Content | null;
-    readonly last: Content | null;
-    readonly length: number;
-    readonly transitioning: boolean;
-    add(content: Content): void;
-    content(at: number | string): Content;
-    empty(start?: number, stop?: number): void;
-    firstThat(id: string, ...extras: any[]): void;
-    insert(content: Content, before: Content): void;
-    lastThat(id: string, ...extras: any[]): void;
-    remove(content: Content): void;
-    replace(content: Content, by: Content): void;
-    run(transition: Transition, ...extras: any[]): void;
-    swap(content0: Content, content1: Content): void;
-    onTransitionBeginning(container: Container): void;
-    onTransitionEnded(container: Container): void;
+    public constructor(
+      behaviorData: any,
+      dictionary: ContainerConstructorParam
+    );
+    public clip: boolean;
+    public readonly first: Content | null;
+    public readonly last: Content | null;
+    public readonly length: number;
+    public readonly transitioning: boolean;
+    public add(content: Content): void;
+    public content(at: number | string): Content;
+    public empty(start?: number, stop?: number): void;
+    public firstThat(id: string, ...extras: any[]): void;
+    public insert(content: Content, before: Content): void;
+    public lastThat(id: string, ...extras: any[]): void;
+    public remove(content: Content): void;
+    public replace(content: Content, by: Content): void;
+    public run(transition: Transition, ...extras: any[]): void;
+    public swap(content0: Content, content1: Content): void;
+    public onTransitionBeginning(container: Container): void;
+    public onTransitionEnded(container: Container): void;
+    public static template(
+      anonymous: (param: any) => ContainerConstructorParam
+    ): ContainerConstructor;
+  }
+  interface ContainerConstructor {
+    new (dictionary: ContainerConstructor | any): Container;
+    template(dictionary: ContainerConstructorParam | any): ContainerConstructor;
   }
   class Label extends Content {
-    constructor(behaviorData: any, dictionary: LabelConstructorParam);
-    string: string;
+    public constructor(behaviorData: any, dictionary: LabelConstructorParam);
+    public string: string;
+    public static template(
+      anonymous: (param: any) => LabelConstructorParam
+    ): LabelConstructor;
   }
   class Port extends Content {
-    drawContent(x: number, y: number, width: number, height: number): void;
-    drawLabel(
+    public drawContent(
+      x: number,
+      y: number,
+      width: number,
+      height: number
+    ): void;
+    public drawLabel(
       string: string,
       x: number,
       y: number,
       width: number,
       height: number
     ): void;
-    drawSkin(
+    public drawSkin(
       skin: Skin,
       x: number,
       y: number,
@@ -167,7 +189,7 @@ declare namespace piu {
       variant?: number,
       state?: number
     ): void;
-    drawString(
+    public drawString(
       string: string,
       style: Style,
       color: Color,
@@ -176,7 +198,7 @@ declare namespace piu {
       width: number,
       height: number
     ): void;
-    drawStyle(
+    public drawStyle(
       string: string,
       style: Style,
       x: number,
@@ -186,7 +208,7 @@ declare namespace piu {
       ellipsis?: boolean,
       state?: number
     ): void;
-    drawTexture(
+    public drawTexture(
       texture: Texture,
       color: Color,
       x: number,
@@ -196,14 +218,14 @@ declare namespace piu {
       sw: number,
       sh: number
     ): void;
-    fillColor(
+    public fillColor(
       color: Color,
       x: number,
       y: number,
       width: number,
       height: number
     ): void;
-    fillTexture(
+    public fillTexture(
       texture: Texture,
       color: Color,
       x: number,
@@ -215,11 +237,21 @@ declare namespace piu {
       sw?: number,
       sh?: number
     ): void;
-    invalidate(x?: number, y?: number, width?: number, height?: number): void;
-    measureString(string: string, style: Style): Size;
-    popClip(): void;
-    pushClip(x?: number, y?: number, width?: number, height?: number): void;
-    onDraw(
+    public invalidate(
+      x?: number,
+      y?: number,
+      width?: number,
+      height?: number
+    ): void;
+    public measureString(string: string, style: Style): Size;
+    public popClip(): void;
+    public pushClip(
+      x?: number,
+      y?: number,
+      width?: number,
+      height?: number
+    ): void;
+    public onDraw(
       port: Port,
       x: number,
       y: number,
@@ -228,73 +260,95 @@ declare namespace piu {
     ): void;
   }
   class Text extends Content {
-    constructor(begaviorData: any, dictionary: TextConstructorParam);
-    blocks: {
+    public constructor(begaviorData: any, dictionary: TextConstructorParam);
+    public blocks: {
       behavior: object | null;
       style: Style | null;
       spans: string | string[];
     }[];
-    string: string;
-    begin(): void;
-    beginBlock(style?: Style, behavior?: object): void;
-    beginSpan(style: Style, behavior?: object): void;
-    concat(string: string): void;
-    end(): void;
-    endBlock(): void;
-    endSpan(): void;
+    public string: string;
+    public begin(): void;
+    public beginBlock(style?: Style, behavior?: object): void;
+    public beginSpan(style: Style, behavior?: object): void;
+    public concat(string: string): void;
+    public end(): void;
+    public endBlock(): void;
+    public endSpan(): void;
+    public static template(
+      anonymous: (param: any) => TextConstructorParam
+    ): TextConstructor;
   }
-  class Application extends Container {}
+  interface LabelConstructor extends ContentConstructor {
+    new (dictionary?: LabelConstructorParam): Label;
+    template(dictionary: LabelConstructorParam | any): LabelConstructor;
+  }
+  interface TextConstructor extends ContentConstructor {
+    new (dictionary?: TextConstructorParam): Text;
+    template(dictionary: TextConstructorParam | any): TextConstructor;
+  }
+  class Application extends Container {
+    public constructor(
+      behaviorData: any,
+      dictionary: ApplicationConstructorParam
+    );
+    public displayListLength: number;
+    public commandListLength: number;
+  }
+  interface ApplicationConstructorParam extends ContainerConstructorParam {
+    displayListLength?: number;
+    commandListLength?: number;
+  }
   class Column extends Container {}
   class Layout extends Container {
-    onFitHorizontally(layout: Layout, width: number): void;
-    onFitVertically(layout: Layout, height: number): void;
-    onMeasureHorizontally(layout: Layout, width: number): void;
-    onMeasureVertically(layout: Layout, height: number): void;
+    public onFitHorizontally(layout: Layout, width: number): void;
+    public onFitVertically(layout: Layout, height: number): void;
+    public onMeasureHorizontally(layout: Layout, width: number): void;
+    public onMeasureVertically(layout: Layout, height: number): void;
   }
   class Image extends Content {
-    constructor(behaviorData: any, dictionary: ImageConstructorParam);
-    readonly frameCount: never;
-    frameIndex: number;
+    public constructor(behaviorData: any, dictionary: ImageConstructorParam);
+    public readonly frameCount: never;
+    public frameIndex: number;
   }
   class Die extends Layout {
-    constructor(behaviorData: any, dictionary: ContentConstructorParam);
-    set(x: number, y: number, width: number, height: number): Die;
-    sub(x: number, y: number, width: number, height: number): Die;
-    and(x: number, y: number, width: number, height: number): Die;
-    or(x: number, y: number, width: number, height: number): Die;
-    xor(x: number, y: number, width: number, height: number): Die;
-    fill(): Die;
-    empty(): Die;
-    cut(): void;
-    attach(content: Content): void;
-    detach(): void;
+    public constructor(behaviorData: any, dictionary: ContentConstructorParam);
+    public set(x: number, y: number, width: number, height: number): Die;
+    public sub(x: number, y: number, width: number, height: number): Die;
+    public and(x: number, y: number, width: number, height: number): Die;
+    public or(x: number, y: number, width: number, height: number): Die;
+    public xor(x: number, y: number, width: number, height: number): Die;
+    public fill(): Die;
+    public empty(): Die;
+    public cut(): void;
+    public attach(content: Content): void;
+    public detach(): void;
   }
   class Row extends Container {}
   class Scroller extends Container {
-    constructor(behaviorData: any, dictionary: ScrollerConstructorParam);
-    readonly constraint: Position;
-    loop: boolean;
-    scroll: Position;
-    tracking: boolean;
-    reveal(bounds: Bounds): void;
-    scrollBy(dx: number, dy: number): void;
-    scrollTo(x: number, y: number): void;
-    onScrolled(scroller: Scroller): void;
+    public constructor(behaviorData: any, dictionary: ScrollerConstructorParam);
+    public readonly constraint: Position;
+    public loop: boolean;
+    public scroll: Position;
+    public tracking: boolean;
+    public reveal(bounds: Bounds): void;
+    public scrollBy(dx: number, dy: number): void;
+    public scrollTo(x: number, y: number): void;
+    public onScrolled(scroller: Scroller): void;
   }
   class Timeline {
-    constructor();
-    duration: number;
-    fraction: number;
-    time: number;
-    from(
+    public constructor();
+    public duration: number;
+    public fraction: number;
+    public time: number;
+    public from(
       target: object,
       fromProperties: object,
       duration: number,
       easing?: string,
       delay?: number
     ): Timeline;
-    seekTo(time: number): void;
-    to(
+    public seekTo(time: number): void;
+    public to(
       target: object,
       fromProperties: object,
       duration: number,
@@ -303,8 +357,7 @@ declare namespace piu {
     ): Timeline;
   }
   interface ContentConstructorParam
-    extends
-      Coordinates,
+    extends Coordinates,
       Bounds,
       ContentState,
       TimeProperty,
@@ -401,21 +454,23 @@ declare namespace piu {
     new (dictionary?: SkinConstructorParam): Skin;
     template(dictionary: SkinConstructorParam | any): SkinConstructor;
   }
-  type SkinConstructorParam = ColorSkinConstructorParam | TextureSkinConstructorParam;
+  type SkinConstructorParam =
+    | ColorSkinConstructorParam
+    | TextureSkinConstructorParam;
   interface TextStyleConstructorParam extends StyleConstructorParamBase {
-    leading: number;
-    right: number;
-    bottom: number;
-    left: number;
+    leading?: number;
+    right?: number;
+    bottom?: number;
+    left?: number;
   }
   interface LabelStyleConstructorParam extends StyleConstructorParamBase {
-    vertical: string;
+    vertical?: string;
   }
   interface StyleConstructorParamBase {
     color: Color | Color[];
     font: string;
-    horizontal: string;
-    top: number;
+    horizontal?: string;
+    top?: number;
   }
   type Color = string;
 }
