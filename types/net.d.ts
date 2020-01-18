@@ -1,6 +1,6 @@
 declare class Net {
-  static get(property: string): string | number;
-  static resolve(
+  public static get(property: string): string | number;
+  public static resolve(
     host: string,
     callback: (name: string, address?: string) => void
   ): void;

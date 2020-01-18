@@ -3,133 +3,133 @@ declare class GAP {}
 
 declare namespace BTUtils {
   class Bytes extends ArrayBuffer {
-    constructor(bytes: ArrayBuffer, littleEndian: boolean);
-    set(bytes: ArrayBuffer, littleEndian: boolean): void;
-    equals(bytes: Bytes): boolean;
+    public constructor(bytes: ArrayBuffer, littleEndian: boolean);
+    public set(bytes: ArrayBuffer, littleEndian: boolean): void;
+    public equals(bytes: Bytes): boolean;
   }
   function uuid(strings: string[]): Bytes;
   function address(strings: string[]): Bytes;
   class AdvertisementSerializer {
-    static incompleteUUID16List(
+    public static incompleteUUID16List(
       data: ArrayBuffer
     ): {
       type: number;
       data: Uint8Array;
     };
-    static completeUUID16List(
+    public static completeUUID16List(
       data: ArrayBuffer
     ): {
       type: number;
       data: Uint8Array;
     };
-    static incompleteUUID128List(
+    public static incompleteUUID128List(
       data: ArrayBuffer
     ): {
       type: number;
       data: Uint8Array;
     };
-    static completeUUID128List(
+    public static completeUUID128List(
       data: ArrayBuffer
     ): {
       type: number;
       data: Uint8Array;
     };
-    static shortName(
+    public static shortName(
       data: string
     ): {
       type: number;
       data: Uint8Array;
     };
-    static completeName(
+    public static completeName(
       data: string
     ): {
       type: number;
       data: Uint8Array;
     };
-    static flags(
+    public static flags(
       data: number
     ): {
       type: number;
       data: Uint8Array;
     };
-    static manufacturerSpecific(data: {
+    public static manufacturerSpecific(data: {
       identifier: number;
       data: ArrayBuffer;
     }): {
       type: number;
       data: Uint8Array;
     };
-    static txPowerLevel(
+    public static txPowerLevel(
       data: number
     ): {
       type: number;
       data: Uint8Array;
     };
-    static connectionInterval(param: {
+    public static connectionInterval(param: {
       intervalMin: number;
       intervalMax: number;
     }): {
       type: number;
       data: DataView;
     };
-    static solicitationUUID16List(
+    public static solicitationUUID16List(
       param: ArrayBuffer
     ): {
       type: number;
       data: Uint8Array;
     };
-    static solicitationUUID128List(
+    public static solicitationUUID128List(
       param: ArrayBuffer
     ): {
       type: number;
       data: Uint8Array;
     };
-    static serviceDataUUID16(param: {
+    public static serviceDataUUID16(param: {
       uuid: number;
       data?: ArrayBuffer;
     }): {
       type: number;
       data: Uint8Array;
     };
-    static serviceDataUUID128(param: {
+    public static serviceDataUUID128(param: {
       uuid: number;
       data?: ArrayBuffer;
     }): {
       type: number;
       data: Uint8Array;
     };
-    static appearance(
+    public static appearance(
       param: number
     ): {
       type: number;
       data: Uint8Array;
     };
-    static publicAddress(
+    public static publicAddress(
       param: string
     ): {
       type: number;
       data: Uint8Array;
     };
-    static randomAddress(
+    public static randomAddress(
       param: string
     ): {
       type: number;
       data: Uint8Array;
     };
-    static advertisingInterval(
+    public static advertisingInterval(
       param: number
     ): {
       type: number;
       data: Uint8Array;
     };
     //static deviceAddress(param) {}
-    static role(
+    public static role(
       param: number
     ): {
       type: number;
       data: Uint8Array;
     };
-    static uri(
+    public static uri(
       param: string
     ): {
       type: number;

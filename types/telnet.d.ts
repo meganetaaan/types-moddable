@@ -1,5 +1,5 @@
 declare class Telnet {
-  constructor(dictionary: { port: number });
-  close(): void;
+  public constructor(dictionary: { port: number });
+  public close(): void;
 }
 export = Telnet;

@@ -1,2 +1,2 @@
 import { Text } from "./index";
-export = Text;
+export default Text;

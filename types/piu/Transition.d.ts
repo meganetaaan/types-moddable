@@ -1,2 +1,2 @@
 import { Transition } from "./index";
-export = Transition;
+export default Transition;

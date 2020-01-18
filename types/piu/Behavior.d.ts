@@ -1,2 +1,2 @@
 import { Behavior } from "./index";
-export = Behavior;
+export default Behavior;

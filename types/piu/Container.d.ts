@@ -1,2 +1,2 @@
 import { Container } from "./index";
-export = Container;
+export default Container;

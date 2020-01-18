@@ -1,2 +1,2 @@
 import { Row } from "./index";
-export = Row;
+export default Row;

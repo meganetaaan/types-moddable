@@ -1,18 +1,16 @@
 import NeoPixel from "./neopixel";
 import { Color } from "commodetto/index";
-// FIXME
-// import Timeline from "../piu/timeline"
-type Timeline = any;
+import Timeline from "./piu/Timeline";
 declare class NeoStrand extends NeoPixel {
-  start(delay: number): void;
-  stop(): void;
-  setScheme(schemes: NeoStrandEffect[]): void;
-  set(idx: number, color: Color, start?: number, end?: number): void;
-  add(idx: number, color: Color, start?: number, end?: number): void;
-  sub(idx: number, color: Color, start?: number, end?: number): void;
-  hsvToRgb(h: number, s: number, v: number): Color;
-  rgbToHsv(r: number, g: number, b: number): Color;
-  op(
+  public start(delay: number): void;
+  public stop(): void;
+  public setScheme(schemes: NeoStrandEffect[]): void;
+  public set(idx: number, color: Color, start?: number, end?: number): void;
+  public add(idx: number, color: Color, start?: number, end?: number): void;
+  public sub(idx: number, color: Color, start?: number, end?: number): void;
+  public hsvToRgb(h: number, s: number, v: number): Color;
+  public rgbToHsv(r: number, g: number, b: number): Color;
+  public op(
     idx: number,
     rgb: Color,
     mode?: number,
@@ -21,12 +19,12 @@ declare class NeoStrand extends NeoPixel {
   ): void;
 }
 declare class NeoStrandEffect {
-  constructor(dictionary: NeoStrand.NeoStrandEffectConstructorParam);
-  timeline: Timeline;
-  reset(effect: NeoStrandEffect): void;
-  loopPrepare(effect: NeoStrandEffect): void;
-  activate(effect: NeoStrandEffect): void;
-  idle(effect: NeoStrandEffect, ticks: number): void;
+  public constructor(dictionary: NeoStrand.NeoStrandEffectConstructorParam);
+  public timeline: Timeline;
+  public reset(effect: NeoStrandEffect): void;
+  public loopPrepare(effect: NeoStrandEffect): void;
+  public activate(effect: NeoStrandEffect): void;
+  public idle(effect: NeoStrandEffect, ticks: number): void;
 }
 
 declare namespace NeoStrand {
@@ -81,33 +79,33 @@ declare namespace NeoStrand {
     mode?: number;
   }
   class HueSpan extends NeoStrandEffect {
-    constructor(dictionary: HueSpanConstructorParam);
-    hue: number;
+    public constructor(dictionary: HueSpanConstructorParam);
+    public hue: number;
   }
   class Sine extends NeoStrandEffect {
-    constructor(dictionary: SineConstructorParam);
-    effectValue: number;
+    public constructor(dictionary: SineConstructorParam);
+    public effectValue: number;
   }
   class Marqee extends NeoStrandEffect {
-    constructor(dictionary: MarqeeConstructorParam);
-    step: number;
+    public constructor(dictionary: MarqeeConstructorParam);
+    public step: number;
   }
   class Pulse extends NeoStrandEffect {
-    constructor(dictionary: PulseConstructorParam);
-    pulseLoc: number;
-    effectValue: number;
+    public constructor(dictionary: PulseConstructorParam);
+    public pulseLoc: number;
+    public effectValue: number;
   }
   class Pattern extends NeoStrandEffect {
-    constructor(dictionary: PatternConstructorParam);
-    effectValue: number;
+    public constructor(dictionary: PatternConstructorParam);
+    public effectValue: number;
   }
   class Dim extends NeoStrandEffect {
-    constructor(dictionary: DimConstructorParam);
-    effectValue: number;
+    public constructor(dictionary: DimConstructorParam);
+    public effectValue: number;
   }
   class Ease extends NeoStrandEffect {
-    constructor(dictionary: EaseConstructorParam);
-    step: number;
+    public constructor(dictionary: EaseConstructorParam);
+    public step: number;
   }
 }
 // FIXME

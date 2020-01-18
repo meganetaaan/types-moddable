@@ -1,2 +1,2 @@
 import { Column } from "./index";
-export = Column;
+export default Column;

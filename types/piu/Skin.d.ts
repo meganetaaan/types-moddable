@@ -1,2 +1,2 @@
 import { Skin } from "./index";
-export = Skin;
+export default Skin;

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/camelcase */
 declare namespace Commodetto {
   enum CommodettoBitmapFormat {
     kCommodettoBitmapDefault = 1,
@@ -13,93 +14,97 @@ declare namespace Commodetto {
     kCommodettoBitmapPacked = 0x80
   }
   class Bitmap {
-    constructor(
+    public constructor(
       width: number,
       height: number,
       format: number,
       buffer: ArrayBuffer,
       offset: number
     );
-    width: number;
-    height: number;
-    format: number;
-    static depth(pixelFormat: number): number;
-    static readonly Default: number;
-    static readonly RLE: number;
-    static readonly Monochrome: number;
-    static readonly Gray16: number;
-    static readonly Gray256: number;
-    static readonly RGB332: number;
-    static readonly RGB565LE: number;
-    static readonly RGB565BE: number;
-    static readonly RGB24: number;
-    static readonly RGBA32: number;
-    static readonly CLUT16: number;
+    public width: number;
+    public height: number;
+    public format: number;
+    public static depth(pixelFormat: number): number;
+    public static readonly Default: number;
+    public static readonly RLE: number;
+    public static readonly Monochrome: number;
+    public static readonly Gray16: number;
+    public static readonly Gray256: number;
+    public static readonly RGB332: number;
+    public static readonly RGB565LE: number;
+    public static readonly RGB565BE: number;
+    public static readonly RGB24: number;
+    public static readonly RGBA32: number;
+    public static readonly CLUT16: number;
   }
   abstract class PixelsOut {
-    constructor(params: { width: number; height: number; pixelFormat: number });
-    begin(x: number, y: number, width: number, height: number): void;
-    end(): void;
-    continue(x: number, y: number, width: number, height: number): void;
-    send(pixels: ArrayBuffer, offset: number, count: number): void;
-    adaptInvalid(r: Rectangle): void;
-    pixelsToBytes(count: number): void;
-    readonly width: number;
-    readonly height: number;
-    readonly pixelFormat: number;
-    readonly async: boolean;
-    readonly c_dispatch?: HostBuffer;
+    public constructor(params: {
+      width: number;
+      height: number;
+      pixelFormat: number;
+    });
+    public begin(x: number, y: number, width: number, height: number): void;
+    public end(): void;
+    public continue(x: number, y: number, width: number, height: number): void;
+    public send(pixels: ArrayBuffer, offset: number, count: number): void;
+    public adaptInvalid(r: Rectangle): void;
+    public pixelsToBytes(count: number): void;
+    public readonly width: number;
+    public readonly height: number;
+    public readonly pixelFormat: number;
+    public readonly async: boolean;
+    public readonly c_dispatch?: HostBuffer;
     // clut: any;
   }
   class HostBuffer extends ArrayBuffer {}
   class SPIOut extends PixelsOut {}
   class BufferOut extends PixelsOut {
-    readonly bitmap: Bitmap;
+    public readonly bitmap: Bitmap;
   }
   class BMPOut extends PixelsOut {}
   class RLE4Out extends PixelsOut {}
   class ColorCellOut extends PixelsOut {}
 
   class JPEG {
-    constructor();
-    constructor(jpegData: ArrayBuffer);
-    read(): Bitmap;
-    push(buffer?: ArrayBuffer): void;
-    readonly ready: boolean;
-    readonly width: number;
-    readonly height: number;
+    public constructor();
+    public constructor(jpegData: ArrayBuffer);
+    public read(): Bitmap;
+    public push(buffer?: ArrayBuffer): void;
+    public readonly ready: boolean;
+    public readonly width: number;
+    public readonly height: number;
   }
 
   class PNG {
-    static decompress(pngData: ArrayBuffer, hasAlpha?: boolean): Bitmap;
-    read(): ArrayBuffer;
-    readonly width: number;
-    readonly height: number;
-    readonly depth: number;
-    readonly channels: number;
-    readonly bpp: number;
+    public static decompress(pngData: ArrayBuffer, hasAlpha?: boolean): Bitmap;
+    public read(): ArrayBuffer;
+    public readonly width: number;
+    public readonly height: number;
+    public readonly depth: number;
+    public readonly channels: number;
+    public readonly bpp: number;
   }
 
   abstract class Render {
-    constructor(pixelsOut: PixelsOut, dictionary: any);
-    begin(x: number, y: number, width: number, height: number): void;
-    begin(x: number, y: number): void;
-    begin(): void;
-    end(): void;
-    continue(x: number, y: number, width: number, height: number): void;
-    adaptInvalid(r: Rectangle): void;
+    public constructor(pixelsOut: PixelsOut, dictionary: any);
+    public begin(x: number, y: number, width: number, height: number): void;
+    public begin(x: number, y: number): void;
+    public begin(): void;
+    public end(): void;
+    public continue(x: number, y: number, width: number, height: number): void;
+    public adaptInvalid(r: Rectangle): void;
   }
   type Rectangle = any;
 
   class Convert {
-    constructor(src: Bitmap, dst: Bitmap);
-    convert(src: ArrayBuffer | HostBuffer, dst: ArrayBuffer): void;
+    public constructor(src: Bitmap, dst: Bitmap);
+    public convert(src: ArrayBuffer | HostBuffer, dst: ArrayBuffer): void;
   }
 
   class Poco extends Render {
-    readonly height: number;
-    readonly width: number;
-    constructor(
+    public readonly height: number;
+    public readonly width: number;
+    public constructor(
       pixelsOut: PixelsOut,
       dictionary: {
         displaylistLength: number;
@@ -209,22 +214,22 @@ declare namespace Commodetto {
   function parseBMP(buffer: ArrayBuffer): Bitmap;
 
   class Stream {
-    constructor(
+    public constructor(
       buffer: ArrayBuffer,
       dictionary: {
         loop: boolean;
       }
     );
-    initialize(
+    public initialize(
       buffer: ArrayBuffer,
       dictionary: {
         loop: boolean;
       }
     ): void;
-    next(): ArrayBuffer;
-    read(offset: number, size: number): ArrayBuffer;
-    readonly width: number;
-    readonly height: number;
+    public next(): ArrayBuffer;
+    public read(offset: number, size: number): ArrayBuffer;
+    public readonly width: number;
+    public readonly height: number;
   }
   // TODO
   type BMFont = any;

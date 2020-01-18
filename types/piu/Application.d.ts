@@ -1,2 +1,2 @@
 import { Application } from "./index";
-export = Application;
+export default Application;

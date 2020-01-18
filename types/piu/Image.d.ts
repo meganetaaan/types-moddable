@@ -1,2 +1,2 @@
 import { Image } from "./index";
-export = Image;
+export default Image;

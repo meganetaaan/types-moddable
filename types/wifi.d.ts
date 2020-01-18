@@ -1,14 +1,17 @@
 declare class WiFi {
-  constructor(dictionary: WiFi.WiFiParam, callback: (message: string) => void);
-  close(): void;
-  static scan(
+  public constructor(
+    dictionary: WiFi.WiFiParam,
+    callback: (message: string) => void
+  );
+  public close(): void;
+  public static scan(
     dictionary: { hidden?: boolean; channel?: number },
     callback: (item: WiFi.WiFiParam | null) => void
   ): void;
-  readonly status: number;
-  readonly mode: number;
-  static connect(dictionary: WiFi.WiFiParam): void;
-  static accessPoint(dictionary: {
+  public readonly status: number;
+  public readonly mode: number;
+  public static connect(dictionary: WiFi.WiFiParam): void;
+  public static accessPoint(dictionary: {
     ssid: string;
     password?: string;
     channel?: number;

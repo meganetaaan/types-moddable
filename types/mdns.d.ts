@@ -1,19 +1,19 @@
 declare class MDNS {
-  constructor(
+  public constructor(
     dictionary: {
       hostName?: string;
     },
     callback?: (message: number, value: any) => void
   );
-  monitor(
+  public monitor(
     serviceType: string,
     callback: (service: string, instance: Service) => void
   ): void;
-  add(service: Service): void;
-  update(service: Service): void;
-  remove(service: Service): void;
-  remove(serviceType: string): void;
-  services: Service[];
+  public add(service: Service): void;
+  public update(service: Service): void;
+  public remove(service: Service): void;
+  public remove(serviceType: string): void;
+  public services: Service[];
 }
 declare interface Service {
   name: string;

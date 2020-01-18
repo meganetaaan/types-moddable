@@ -16,22 +16,22 @@ declare namespace DNS {
     ANSWER
   }
   class Parser {
-    constructor(buffer: ArrayBuffer);
-    questions(index: number): Record;
-    answers(index: number): Record;
-    authorities(index: number): Record;
-    additionarls(index: number): Record;
+    public constructor(buffer: ArrayBuffer);
+    public questions(index: number): Record;
+    public answers(index: number): Record;
+    public authorities(index: number): Record;
+    public additionarls(index: number): Record;
   }
   // FIXME
   type Record = any;
   class Serializer {
-    constructor(dictionary: {
+    public constructor(dictionary: {
       opcode: number;
       query: boolean;
       authoritative: boolean;
       id: number;
     });
-    add(
+    public add(
       section: number,
       name: string,
       type: number,
@@ -39,11 +39,11 @@ declare namespace DNS {
       ttl: number,
       ...extras: any[]
     ): void;
-    build(): ArrayBuffer;
+    public build(): ArrayBuffer;
   }
   class Server {
-    constructor(callback: (message: number, value: any) => void);
-    close(): void;
+    public constructor(callback: (message: number, value: any) => void);
+    public close(): void;
   }
 }
 export = DNS;

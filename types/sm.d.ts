@@ -1,22 +1,25 @@
 declare class SM {
-  deleteAllBondings(): void;
-  onSecurityParameters(params: any): void;
-  onAuthenticated(): void;
-  onPasskeyConfirm(params: {
+  public deleteAllBondings(): void;
+  public onSecurityParameters(params: any): void;
+  public onAuthenticated(): void;
+  public onPasskeyConfirm(params: {
     address: ArrayBuffer;
     passKey: SM.PassKey;
   }): boolean;
-  onPassKeyDisplay(params: { address: ArrayBuffer; passKey: SM.PassKey }): void;
-  onPassKeyRequested(params: { address: ArrayBuffer }): SM.PassKey;
+  public onPassKeyDisplay(params: {
+    address: ArrayBuffer;
+    passKey: SM.PassKey;
+  }): void;
+  public onPassKeyRequested(params: { address: ArrayBuffer }): SM.PassKey;
 }
 declare namespace SM {
   type PassKey = number;
   class IOCapability {
-    static readonly NoInputNoOutput: number;
-    static readonly DisplayOnly: number;
-    static readonly KeyboardOnly: number;
-    static readonly KeyboardDisplay: number;
-    static readonly DisplayYesNo: number;
+    public static readonly NoInputNoOutput: number;
+    public static readonly DisplayOnly: number;
+    public static readonly KeyboardOnly: number;
+    public static readonly KeyboardDisplay: number;
+    public static readonly DisplayYesNo: number;
   }
 }
 

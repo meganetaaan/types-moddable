@@ -1,5 +1,5 @@
 declare class Ping {
-  constructor(
+  public constructor(
     dictionary: {
       host: string;
       id: string;
@@ -7,6 +7,6 @@ declare class Ping {
     },
     callback: (message: number, value: any, etc?: any) => void
   );
-  close(): void;
+  public close(): void;
 }
 export = Ping;

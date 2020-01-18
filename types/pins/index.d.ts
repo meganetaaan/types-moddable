@@ -1,45 +1,45 @@
 declare namespace pins {
   class AudioIn {
-    constructor();
-    close(): void;
-    read(samples: number): number;
-    readonly sampleRate: number;
-    readonly bitsPerSample: number;
-    readonly numChannels: number;
+    public constructor();
+    public close(): void;
+    public read(samples: number): number;
+    public readonly sampleRate: number;
+    public readonly bitsPerSample: number;
+    public readonly numChannels: number;
   }
   namespace AudioIn {}
   class Digital {
-    constructor(dictionary: Digital.constructorParam);
-    constructor(pin: number, mode: number);
-    constructor(port: string, pin: number, mode: number);
-    read(): number;
-    write(value: number): void;
-    mode(mode: number): void;
-    static read(pin: number): number;
-    static write(pin: number, value: number): void;
-    static readonly Input: number;
-    static readonly InputPullUp: number;
-    static readonly InputPullDown: number;
-    static readonly InputPullUpDown: number;
-    static readonly Output: number;
-    static readonly OutputOpenDrain: number;
+    public constructor(dictionary: Digital.ConstructorParam);
+    public constructor(pin: number, mode: number);
+    public constructor(port: string, pin: number, mode: number);
+    public read(): number;
+    public write(value: number): void;
+    public mode(mode: number): void;
+    public static read(pin: number): number;
+    public static write(pin: number, value: number): void;
+    public static readonly Input: number;
+    public static readonly InputPullUp: number;
+    public static readonly InputPullDown: number;
+    public static readonly InputPullUpDown: number;
+    public static readonly Output: number;
+    public static readonly OutputOpenDrain: number;
   }
   namespace Digital {
-    interface constructorParam {
+    interface ConstructorParam {
       pin: number;
       mode: number;
       port?: string;
     }
     class Monitor {
-      constructor(dictionary: Monitor.constructorParam);
-      onChanged(callback: () => void): void;
-      read(): number;
-      close(): void;
-      rises: number;
-      falls: number;
+      public constructor(dictionary: Monitor.ConstructorParam);
+      public onChanged(callback: () => void): void;
+      public read(): number;
+      public close(): void;
+      public rises: number;
+      public falls: number;
     }
     namespace Monitor {
-      interface constructorParam {
+      interface ConstructorParam {
         pin: number;
         port?: string;
         mode: number;
@@ -52,30 +52,30 @@ declare namespace pins {
     }
   }
   class Analog {
-    static read(pin: number): number;
+    public static read(pin: number): number;
   }
 
   class PWM {
-    constructor(dictionary: PWM.constructorParam);
-    write(value: number): void;
-    close(): void;
+    public constructor(dictionary: PWM.ConstructorParam);
+    public write(value: number): void;
+    public close(): void;
   }
   namespace PWM {
-    interface constructorParam {
+    interface ConstructorParam {
       pin: number;
       mode?: string;
     }
   }
 
   class I2C {
-    constructor(dictionary: I2C.constructorParam);
-    constructor(port: number[], pin: number, mode: number);
-    close(): void;
-    read(count: number, buffer?: ArrayBuffer): void;
-    write(first: any, ...valuesOrStop: Array<any | boolean>): void;
+    public constructor(dictionary: I2C.ConstructorParam);
+    public constructor(port: number[], pin: number, mode: number);
+    public close(): void;
+    public read(count: number, buffer?: ArrayBuffer): void;
+    public write(first: any, ...valuesOrStop: (any | boolean)[]): void;
   }
   namespace I2C {
-    interface constructorParam {
+    interface ConstructorParam {
       scl?: number;
       sda?: number;
       address: number;
@@ -84,33 +84,34 @@ declare namespace pins {
   }
 
   class SMBus {
-    constructor(dictionary: SMBus.constructorParam);
-    readByte(register: number): number;
-    readWord(register: number): number;
-    readBlock(
+    public constructor(dictionary: SMBus.ConstructorParam);
+    public readByte(register: number): number;
+    public readWord(register: number): number;
+    public readBlock(
       register: number,
       count: number,
       buffer?: ArrayBuffer
     ): Uint8Array;
-    writeByte(register: number, value: number): void;
-    writeWord(register: number, value: number): void;
-    writeBlock(
+    public writeByte(register: number, value: number): void;
+    public writeWord(register: number, value: number): void;
+    public writeBlock(
       register: number,
       first: any,
-      ...valuesOrStop: Array<any | boolean>
+      ...valuesOrStop: (any | boolean)[]
     ): void;
   }
   namespace SMBus {
-    interface constructorParam extends I2C.constructorParam {}
+    type ConstructorParam = I2C.ConstructorParam;
+    // interface ConstructorParam extends I2C.ConstructorParam {}
   }
 
   class Servo {
-    constructor(dictionary: Servo.constructorParam);
-    write(degrees: number): void;
-    writeMicroseconds(us: number): void;
+    public constructor(dictionary: Servo.ConstructorParam);
+    public write(degrees: number): void;
+    public writeMicroseconds(us: number): void;
   }
   namespace Servo {
-    interface constructorParam {
+    interface ConstructorParam {
       pin: number;
       min?: number;
       max?: number;

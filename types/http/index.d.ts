@@ -2,19 +2,22 @@ import { SocketConstructorParam, Socket } from "socket/index";
 
 declare namespace http {
   class Request {
-    constructor(dictionary: RequestConstructorParam);
-    close(): void;
-    read(type: StringConstructor, until?: number | string): string;
-    read(type: ArrayBufferConstructor, until?: number | string): ArrayBuffer;
-    read(type: NumberConstructor, until?: number): number;
-    read(numer: number): void;
+    public constructor(dictionary: RequestConstructorParam);
+    public close(): void;
+    public read(type: StringConstructor, until?: number | string): string;
+    public read(
+      type: ArrayBufferConstructor,
+      until?: number | string
+    ): ArrayBuffer;
+    public read(type: NumberConstructor, until?: number): number;
+    public read(numer: number): void;
     // TODO
-    callback(message: number, value1?: any, value2?: any): any;
+    public callback(message: number, value1?: any, value2?: any): any;
   }
   class Server {
-    constructor(dictionary: ServerConstructorParam);
-    close(): void;
-    callback(message: number, value1?: any, value2?: any): any;
+    public constructor(dictionary: ServerConstructorParam);
+    public close(): void;
+    public callback(message: number, value1?: any, value2?: any): any;
   }
   enum Method {
     GET = "GET",

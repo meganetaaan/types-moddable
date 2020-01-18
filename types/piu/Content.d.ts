@@ -1,2 +1,2 @@
 import { Content } from "./index";
-export = Content;
+export default Content;

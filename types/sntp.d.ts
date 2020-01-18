@@ -1,5 +1,5 @@
 declare class SNTP {
-  constructor(
+  public constructor(
     dictionary: {
       host: string;
     },
