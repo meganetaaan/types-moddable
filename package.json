@@ -13,6 +13,7 @@
   "bugs": {
     "url": "https://github.com/meganetaaan/types-moddable/issues"
   },
+  "type": "./types",
   "homepage": "https://github.com/meganetaaan/types-moddable#readme",
   "private": true,
   "devDependencies": {
