@@ -1,7 +1,20 @@
 declare namespace piu {
   class Behavior {}
+  /**
+   * Objects for graphical parts of their user interface, such as buttons, icons, sliders, switches, and tabs.
+   */
   class Content {
-    public constructor(name: string, dictionary: ContentConstructorParam);
+    /**
+     * Content constructor
+     * @param behaviorData 	A parameter that is passed into the onCreate function of this content's behavior. This may be any type of object, including null or a dictionary with arbitrary parameters.
+     * @param dictionary An object with properties to initialize the result.
+     */
+    public constructor(behaviorData: any, dictionary: ContentConstructorParam);
+    /**
+     *
+     * @param x
+     * @param y
+     */
     public adjust(x: number, y: number): void;
     public bubble(id: string, ...extras: any[]): void;
     public captureTouch(id: string, x: number, y: number, ticks: number): void;
@@ -358,40 +371,109 @@ declare namespace piu {
   }
   interface ContentConstructorParam
     extends Coordinates,
-      Bounds,
+      Size,
       ContentState,
       TimeProperty,
       TouchProperty {
+    /**
+     * This content's name
+     */
     name?: string;
+    /**
+     * Creates an anchor, a reference to the created content object in the instantiating data
+     */
     anchor?: string;
+    /**
+     * A function that creates instances of Behavior.prototype; generally a class that extends the Behavior class. This content will create an instance of this behavior, set its behavior parameter to the created instance, and trigger the onCreate method.
+     */
     Behavior?: new () => Behavior;
+    /**
+     * This content's skin
+     */
     skin?: Skin;
+    /**
+     * A function that creates instances of Skin.prototype. This content will create an instance of this skin, and set its skin parameter to the created instance.
+     */
     Skin?: () => Skin;
+    /**
+     * This content's style
+     */
     style?: Style;
+    /**
+     * A function that creates instances of Style.prototype. This content will create an instance of this style, and set its style parameter to the created instance.
+     */
     Style?: () => Style;
+    /**
+     * If true, this content is visible.
+     */
     visible?: boolean;
   }
   interface TimeProperty {
+    /**
+     * This content's time, in milliseconds. When its time is set, this content triggers the onTimeChanged event.
+     */
     time?: number;
+    /**
+     * This content's duration, in milliseconds. This content triggers the onFinished event when its clock is running and its time equals its duration.
+     */
     duration?: number;
+    /**
+     * This content's fraction--that is, the ratio of its time to its duration
+     */
     fraction?: number;
+    /**
+     * The time between ticks of this content's clock--that is, number of milliseconds between triggering the onTimeChanged events of the content's behavior when its clock is running.
+     */
     interval?: number;
+    /**
+     * If true, this content will restart its clock when its time equals its duration
+     */
     loop?: boolean;
   }
   interface ContentState {
+    /**
+     * 	This content's state. If this content's skin defines states, setting the state changes the appearance of this content.
+     */
     state?: number;
+    /**
+     * This content's variant. If this content's skin defines variants, setting the variant changes the appearance of this content.
+     */
     variant?: number;
   }
   interface TouchProperty {
+    /**
+     * If true, this content can be touched; that is, it triggers touch events.
+     */
     active?: boolean;
+    /**
+     * If true, this container receives any touch events that are received by its contents; that is, it will trigger touch events when one of its contents has been touched.
+     */
     backgroundTouch?: boolean;
+    /**
+     * 	If true, this content always captures touches; that is, captureTouch is implicitly invoked on onTouchDown for this content. Setting exclusiveTouch to true is equivalent to calling captureTouch in response to the onTouchDown event for every touch id.
+     */
     exclusiveTouch?: boolean;
+    /**
+     * If true, this content handles multiple touches.
+     */
     multipleTouch?: boolean;
   }
   interface Coordinates {
+    /**
+     * This content's top coordinate, in pixels (setting top in the created instance's coordinates property)
+     */
     top?: number;
+    /**
+     * This content's right coordinate, in pixels (setting right in the created instance's coordinates property)
+     */
     right?: number;
+    /**
+     * This content's bottom coordinate, in pixels (setting bottom in the created instance's coordinates property)
+     */
     bottom?: number;
+    /**
+     * This content's left coordinate, in pixels (setting left in the created instance's coordinates property)
+     */
     left?: number;
   }
   interface Position {
@@ -399,7 +481,13 @@ declare namespace piu {
     y?: number;
   }
   interface Size {
+    /**
+     * This content's width, in pixels (setting width in the created instance's coordinates property)
+     */
     width?: number;
+    /**
+     * This content's height, in pixels (setting height in the created instance's coordinates property)
+     */
     height?: number;
   }
   interface Bounds extends Position, Size {}
