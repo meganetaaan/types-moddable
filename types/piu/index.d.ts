@@ -11,17 +11,53 @@ declare namespace piu {
      */
     public constructor(behaviorData: any, dictionary: ContentConstructorParam);
     /**
-     *
      * @param x
      * @param y
+     * @deprecated
      */
     public adjust(x: number, y: number): void;
+    /**
+     * Causes this content and all container objects upward in the containment hierarchy to trigger an event named by the value of id. The bubbling halts when a bubbled event returns true. Note that the first parameter of a bubbled event is the container object that triggers the event, not this content. Additional parameters, if any, of a bubbled event are the extra parameters of the bubble function.
+     * @param id The name of the event to trigger
+     * @param extras Zero or more extra parameters
+     */
     public bubble(id: string, ...extras: any[]): void;
+    /**
+     * Causes this content to capture the touch named id, meaning that only this content will trigger the remaining onTouchMoved and onTouchEnded events related to that touch. Other content objects concerned with the captured touch trigger the onTouchCancelled event when the captureTouch function is called.
+     * @param id The identifier of the touch
+     * @param x The global position of the touch, in pixels
+     * @param y The global position of the touch, in pixels
+     * @param ticks The global time of the touch
+     */
     public captureTouch(id: string, x: number, y: number, ticks: number): void;
+    /**
+     * The defer function is similar to the delegate function; both cause this content to trigger an event named by the value of id. The difference is in their timing. The delegate function sends the event immediately while the defer functions posts the event. The event will be triggered at the following iteration of the main event loop.
+     * The first parameter of the deferred event is this content. Additional parameters, if any, of the deferred event are the extra parameters of the defer function.
+     * @param id The name of the event to trigger
+     * @param extras Zero or more extra parameters
+     */
     public defer(id: string, ...extras: any[]): void;
+    /**
+     * Causes this content to trigger an event named by the value of id. The first parameter of the delegated event is this content. Additional parameters, if any, of the delegated event are the extra parameters of the delegate function.
+     * @param id The name of the event to trigger
+     * @param extras Zero or more extra parameters
+     */
     public delegate(id: string, ...extras: any[]): void;
+    /**
+     * Causes this container and all content objects downward in the containment hierarchy to trigger an event named by the value of id. The order of traversal is depth first. Traversal halts when one of the triggered event-handling functions returns true. Note that the first parameter of a distributed event is the content object that triggers the event, not this container. Additional parameters, if any, of the event are the extra parameters of the distribute function.
+     * @param id The name of the event
+     * @param extras Zero or more extra parameters
+     */
     public distribute(id: string, ...extras: any[]): void;
+    /**
+     * Focuses this content so that it triggers keyboard events. Only one content object at a time is focused.
+     */
     public focus(): void;
+    /**
+     * Returns this content if this content is active, bound, and contains the position, and undefined otherwise. If this content is a container instance, returns either one of its contents or itself if the content or itself is active, bound, and contains the position, or undefined.
+     * @param x The global position to test, in pixels
+     * @param y The global position to test, in pixels
+     */
     public hit(x: number, y: number): Content | undefined;
     public measure(): Size;
     public moveBy(x: number, y: number): void;
