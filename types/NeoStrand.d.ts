@@ -1,4 +1,4 @@
-import NeoPixel from "./neopixel";
+import NeoPixel from "./NeoPixel";
 import { Color } from "commodetto/index";
 import Timeline from "./piu/Timeline";
 declare class NeoStrand extends NeoPixel {
