@@ -1,2 +1,1 @@
-import { Convert } from "./index";
-export = Convert;
+export { Convert } from './index'

@@ -1,2 +1,1 @@
-import { SPI } from "./index";
-export = SPI;
+export { SPI } from './index'

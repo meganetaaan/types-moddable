@@ -1,2 +1,1 @@
-import { Column } from "./index";
-export default Column;
+export { Column } from './index'

@@ -1,2 +1,1 @@
-import { BufferOut } from "./index";
-export = BufferOut;
+export { BufferOut } from './index'

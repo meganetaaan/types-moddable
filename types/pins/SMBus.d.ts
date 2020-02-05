@@ -1,2 +1,1 @@
-import { SMBus } from "./index";
-export = SMBus;
+export { SMBus } from './index'

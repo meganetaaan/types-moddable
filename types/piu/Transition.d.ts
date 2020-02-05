@@ -1,2 +1,1 @@
-import { Transition } from "./index";
-export default Transition;
+export { Transition } from './index'

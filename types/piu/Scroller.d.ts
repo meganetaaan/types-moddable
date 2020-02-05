@@ -1,2 +1,1 @@
-import { Scroller } from "./index";
-export default Scroller;
+export { Scroller } from './index'

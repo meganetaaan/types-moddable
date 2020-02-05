@@ -1,2 +1,1 @@
-import { Layout } from "./index";
-export default Layout;
+export { Layout } from './index'

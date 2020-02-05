@@ -1,2 +1,1 @@
-import { AudioIn } from "./index";
-export = AudioIn;
+export { AudioIn } from './index'

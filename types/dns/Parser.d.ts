@@ -1,2 +1,1 @@
-import { Parser } from "./index";
-export = Parser;
+export { Parser } from './index'

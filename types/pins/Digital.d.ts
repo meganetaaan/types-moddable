@@ -1,2 +1,1 @@
-import { Digital } from "./index";
-export = Digital;
+export { Digital } from './index'

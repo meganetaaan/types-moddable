@@ -1,2 +1,1 @@
-import { Behavior } from "./index";
-export default Behavior;
+export { Behavior } from './index'

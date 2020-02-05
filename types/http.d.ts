@@ -1,2 +1,2 @@
-import http from "http/index";
-export = http;
+import http from 'http/index'
+export = http

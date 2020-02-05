@@ -1,2 +1,1 @@
-import { Style } from "./index";
-export default Style;
+export { Style } from './index'

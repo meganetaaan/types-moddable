@@ -1,2 +1,1 @@
-import { Stream } from "./index";
-export = Stream;
+export { Stream } from './index'

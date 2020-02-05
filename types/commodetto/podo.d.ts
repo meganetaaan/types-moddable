@@ -1,2 +1,1 @@
-import { Poco } from "./index";
-export = Poco;
+export { Poco } from './index'

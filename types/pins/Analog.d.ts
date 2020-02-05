@@ -1,2 +1,1 @@
-import { Analog } from "./index";
-export = Analog;
+export { Analog } from './index'

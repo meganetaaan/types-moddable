@@ -1,2 +1,1 @@
-import { Request } from "./index";
-export = Request;
+export { Request } from './index'

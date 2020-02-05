@@ -1,2 +1,2 @@
-import socket from "./socket/index";
-export = socket;
+import socket from './socket/index'
+export = socket

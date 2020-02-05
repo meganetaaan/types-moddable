@@ -1,2 +1,1 @@
-import { Servo } from "./index";
-export = Servo;
+export { Servo } from './index'

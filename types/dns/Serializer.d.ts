@@ -1,2 +1,1 @@
-import { Serializer } from "./index";
-export = Serializer;
+export { Serializer } from './index'

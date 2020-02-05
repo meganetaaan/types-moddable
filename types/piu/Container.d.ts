@@ -1,2 +1,1 @@
-import { Container } from "./index";
-export default Container;
+export { Container } from './index'

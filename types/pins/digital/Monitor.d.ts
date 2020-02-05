@@ -1,2 +1,1 @@
-import { Digital } from "../index";
-export = Digital.Monitor;
+export { Digital } from '../index'

@@ -1,2 +1,2 @@
-import websocket from "websocket/index";
-export = websocket;
+import websocket from 'websocket/index'
+export = websocket

@@ -1,2 +1,1 @@
-import { BMPOut } from "./index";
-export = BMPOut;
+export { BMPOut } from './index'

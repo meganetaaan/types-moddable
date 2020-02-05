@@ -1,2 +1,1 @@
-import { Image } from "./index";
-export default Image;
+export { Image } from './index'

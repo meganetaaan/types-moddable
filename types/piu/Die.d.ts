@@ -1,2 +1,1 @@
-import { Die } from "./index";
-export default Die;
+export { Die } from './index'

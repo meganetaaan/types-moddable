@@ -1,2 +1,1 @@
-import { Text } from "./index";
-export default Text;
+export { Text } from './index'

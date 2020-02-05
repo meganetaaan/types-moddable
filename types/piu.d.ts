@@ -1,2 +1,2 @@
-import piu from "./piu/index";
-export = piu;
+import piu from './piu/index'
+export = piu

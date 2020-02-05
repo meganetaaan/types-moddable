@@ -1,2 +1,1 @@
-import { Listener } from "./index";
-export = Listener;
+export { Listener } from './index'

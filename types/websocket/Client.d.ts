@@ -1,2 +1,1 @@
-import { Client } from "./index";
-export = Client;
+export { Client } from './index'

@@ -1,3 +1,3 @@
-declare function UUID(): string;
+declare function UUID(): string
 
-export = UUID;
+export = UUID

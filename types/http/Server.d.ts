@@ -1,2 +1,1 @@
-import { Server } from "./index";
-export = Server;
+export { Server } from './index'

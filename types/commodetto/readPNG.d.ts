@@ -1,2 +1,1 @@
-import { PNG } from "./index";
-export = PNG;
+export { PNG } from './index'

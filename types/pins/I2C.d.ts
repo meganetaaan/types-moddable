@@ -1,2 +1,1 @@
-import { I2C } from "./index";
-export = I2C;
+export { I2C } from './index'

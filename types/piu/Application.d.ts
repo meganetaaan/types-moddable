@@ -1,2 +1,1 @@
-import { Application } from "./index";
-export default Application;
+export { Application } from './index'

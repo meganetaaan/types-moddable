@@ -1,2 +1,2 @@
-import DNS from "./dns/index";
-export = DNS;
+import DNS from './dns/index'
+export = DNS
