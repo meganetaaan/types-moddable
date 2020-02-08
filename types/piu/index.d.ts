@@ -59,63 +59,228 @@ declare namespace piu {
      * @param y The global position to test, in pixels
      */
     public hit(x: number, y: number): Content | undefined
+    /**
+     * Returns the measured size of this content, as an object with width and height parameters.
+     */
     public measure(): Size
+    /**
+     * Moves this content as specified by the parameters. If the content's coordinates constrain its position, the moveBy function ignores the corresponding horizontal or vertical deltas.
+     * @param x The deltas by which to move this content, in pixels
+     * @param y The deltas by which to move this content, in pixels
+     */
     public moveBy(x: number, y: number): void
-    public render(): void
-    public sizeBy(width: number, height: number): void
-    public start(): void
-    public stop(): void
-    public onCreate(content: Content, data: object, context: object): void
-    public onDisplaying(content: Content): void
-    public onFinished(content: Content): void
-    public onTimeChanged(content: Content): void
-    public onTouchBegan(content: Content, id: string, x: number, y: number, ticks: number): void
-    public onTouchCancelled(content: Content, id: string): void
-    public onTouchended(content: Content, id: string, x: number, y: number, ticks: number): void
-    public onTouchMoved(content: Content, id: string, x: number, y: number, ticks: number): void
-    public static template(anonymous: (param: any) => ContentConstructorParam): ContentConstructor
 
+    public render(): void
+    /**
+     * Sizes this content as specified by the parameters. If this content's coordinates constrain its size, the sizeBy function ignores the corresponding horizontal or vertical deltas.
+     * @param width The deltas by which to size this content, in pixels
+     * @param height The deltas by which to size this content, in pixels
+     */
+    public sizeBy(width: number, height: number): void
+    /**
+     * Starts this content's clock
+     */
+    public start(): void
+    /**
+     * Stops this content's clock
+     */
+    public stop(): void
+    /**
+     * This event is triggered when the content is constructed.
+     * @param content The content object that triggered the evet
+     * @param data The parameters of the constructor of the content object that references or contains the behavior
+     * @param context The parameters of the constructor of the content object that references or contains the behavior
+     */
+    public onCreate(content: Content, data: object, context: object): void
+    /**
+     * This event is triggered after the specified content object is added to the containment hierarchy and has been measured and fitted, but before it is visible to the user. This is the first event the object receives after its coordinates have been computed.
+     * @param content The content object that triggered the evet
+     */
+    public onDisplaying(content: Content): void
+    /**
+     * This event is triggered when the specified content object is running and its time equals its duration.
+     * @param content The content object that triggered the evet
+     */
+    public onFinished(content: Content): void
+    /**
+     * This event is triggered when the time of the specified content object changes.
+     * @param content The content object that triggered the evet
+     */
+    public onTimeChanged(content: Content): void
+    /**
+     * These events are triggered when the specified content object is active and touched.
+     * @param content The content object that triggered the evet
+     * @param id The identifier of the touch
+     * @param x The global coordinates of the event, in pixels
+     * @param y The global coordinates of the event, in pixels
+     * @param ticks The global time of the event
+     */
+    public onTouchBegan(content: Content, id: string, x: number, y: number, ticks: number): void
+    /**
+     * These events are triggered when the specified content object is active and touched.
+     * @param content The content object that triggered the evet
+     * @param id The identifier of the touch
+     * @param x The global coordinates of the event, in pixels
+     * @param y The global coordinates of the event, in pixels
+     * @param ticks The global time of the event
+     */
+    public onTouchCancelled(content: Content, id: string): void
+    /**
+     * These events are triggered when the specified content object is active and touched.
+     * @param content The content object that triggered the evet
+     * @param id The identifier of the touch
+     * @param x The global coordinates of the event, in pixels
+     * @param y The global coordinates of the event, in pixels
+     * @param ticks The global time of the event
+     */
+    public onTouchended(content: Content, id: string, x: number, y: number, ticks: number): void
+    /**
+     * These events are triggered when the specified content object is active and touched.
+     * @param content The content object that triggered the evet
+     * @param id The identifier of the touch
+     * @param x The global coordinates of the event, in pixels
+     * @param y The global coordinates of the event, in pixels
+     * @param ticks The global time of the event
+     */
+    public onTouchMoved(content: Content, id: string, x: number, y: number, ticks: number): void
+    /**
+     * Returns a constructor, a function that creates instances of Content.prototype. The prototype property of the result is Content.prototype. The result also provides a template function.
+     * @param anonymous	A function that returns an object with properties to initialize the instances that the result creates
+     */
+    public static template(anonymous: (param: any) => ContentConstructorParam): ContentConstructor
+    /**
+     * The previous content object in this content's container; null if this content is the first content object of this content's container or if this content has no container
+     */
     public readonly previous: Content | null
+    /**
+     * The next content object of this content's container; null if this content is the last content object of this content's container or if this content has no container
+     */
     public readonly next: Content | null
+    /**
+     * @deprecated
+     */
     public readonly application: Application
+    /**
+     * This content's container, or null if this content is unbound--that is, if it has no container
+     */
     public readonly container: Container | null
+    /**
+     * The index of this content in its container, or –1 if this content is unbound
+     */
     public readonly index: number
+    /**
+     * This content's name
+     */
     public name: string
+    /**
+     * If true, this content can be touched; that is, it triggers touch events.
+     */
     public active: boolean
+    /**
+     * The identifier of the property that references this content object in its instantiating data
+     */
     public anchor: string
+    /**
+     * This content's behavior object or null. When this content triggers an event, it calls the corresponding function property of its behavior, if any.
+     */
     public behavior: object
+    /**
+     * This content's coordinates, as an object with left, width, right, top, height, or bottom number properties (specified in pixels), or an empty object if no coordinates are passed into the constructor
+     */
     public coordinates: Coordinates
+    /**
+     * This content's global position and size, as an object with x, y, width, and height number properties, specified in pixels. If this content is unbound, the getter returns undefined and the setter is ignored.
+     */
     public bounds: Bounds
+    /**
+     *	If true, this container receives any touch events that are received by its contents; that is, it will trigger touch events when one of its contents has been touched.
+     */
     public backgroundTouch: boolean
+    /**
+     * If true, this content always captures touches; that is, captureTouch is implicitly invoked on onTouchDown for this content. Setting exclusiveTouch to true is equivalent to calling captureTouch in response to the onTouchDown event for every touch id.
+     */
     public exclusiveTouch: boolean
+    /**
+     * If true, this content handles multiple touches.
+     */
     public multipleTouch: boolean
 
+    /**
+     * This content's time, in milliseconds. When its time is set, this content triggers the onTimeChanged event.
+     */
     public time: number
+    /**
+     * This content's duration, in milliseconds. This content triggers the onFinished event when its clock is running and its time equals its duration.
+     */
     public duration: number
+    /**
+     * This content's fraction--that is, the ratio of its time to its duration. If the duration is 0, the getter returns undefined and the setter is ignored. This content triggers the onTimeChanged event when its fraction is set.
+     */
     public fraction: number
+    /**
+     * The time between ticks of this content's clock--that is, number of milliseconds between triggering the onTimeChanged events of the content's behavior when its clock is running.
+     */
     public interval: number
+    /**
+     * If true, this content will restart its clock when its time equals its duration
+     */
     public loop: boolean
-
+    /**
+     * If true, this content's clock is running.
+     */
+    public running: boolean
+    /**
+     * This content's local position, as an object with x and y number properties, specified in pixels. If this content is unbound, the getter returns undefined and the setter is ignored.
+     */
     public offset: undefined | Position
+    /**
+     * This content's global position, as an object with x and y number properties, specified in pixels. If this content is unbound, the getter returns undefined and the setter is ignored.
+     */
     public position: undefined | Position
+    /**
+     * This content's size, as an object with width and height number properties, specified in pixels
+     */
     public size: Size
+    /**
+     * This content's state. If this content's skin defines states, setting the state changes the appearance of this content.
+     */
     public state: number
+    /**
+     * This content's variant. If this content's skin defines variants, setting the variant changes the appearance of this content.
+     */
     public variant: number
+    /**
+     * This content's skin or null
+     */
     public skin: Skin | null
+    /**
+     * This content's style or null
+     */
     public style: Style | null
+    /**
+     * If true, this content is visible.
+     */
     public visible: boolean
+    /**
+     * This content's global x position. If this content is unbound, the getters return undefined and the setters are ignored.
+     */
     public x: number
+    /**
+     * This content's global y position. If this content is unbound, the getters return undefined and the setters are ignored.
+     */
     public y: number
+    /**
+     * This content's width, in pixels
+     */
     public width: number
+    /**
+     * This content's height, in pixels
+     */
     public height: number
   }
   interface ContentConstructor {
     new (dictionary?: ContentConstructorParam): Content
     template(dictionary: ContentConstructorParam | any): ContentConstructor
-  }
-  class Template extends Content {
-    public constructor(behavior: any, param: any)
-    public constructor(param: any)
   }
   class Style {
     public constructor(dictionary: StyleConstructorParam)
