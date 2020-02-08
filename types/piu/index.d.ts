@@ -283,61 +283,239 @@ declare namespace piu {
     template(dictionary: ContentConstructorParam | any): ContentConstructor
   }
   class Style {
+    /**
+     * @param dictionary An object with properties to initialize the result. Only parameters specified in the Dictionary section below will have an effect; other parameters will be ignored.
+     */
     public constructor(dictionary: StyleConstructorParam)
     public measure(string: string): Size
   }
   class Texture {
+    /**
+     * @param path The URL of the image file. It must be a file URL.
+     */
     public constructor(path: string)
+    /**
+     * @param dictionary An object with properties to initialize the result. Only parameters specified in the Dictionary section below will have an effect; other parameters will be ignored.
+     */
     public constructor(dictionary: TextureConstructorParam)
+    /**
+     * This texture's height, in physical pixels
+     */
     public readonly height: number
+    /**
+     * This texture's width, in physical pixels
+     */
     public readonly width: number
+    /**
+     * Returns a constructor, a function that creates instances of Texture.prototype. The prototype property of the result is Texture.prototype.
+     * @param dictionary An object with properties to initialize the result. Only parameters specified in the Dictionary section below will have an effect; other parameters will be ignored.
+     */
     public static template(dictionary: TextureConstructorParam): TextureConstructor
   }
   class Skin {
+    /**
+     * Returns a skin instance, an object that inherits from Skin.prototype
+     * @param dictionary An object with properties to initialize the result. Only parameters specified in the Dictionary section below will have an effect; other parameters will be ignored.
+     */
     public constructor(dictionary: TextureSkinConstructorParam)
+    /**
+     * Returns a skin instance, an object that inherits from Skin.prototype
+     * @param dictionary An object with properties to initialize the result. Only parameters specified in the Dictionary section below will have an effect; other parameters will be ignored.
+     */
     public constructor(dictionary: ColorSkinConstructorParam)
+    /**
+     * Returns a constructor, a function that creates instances of Skin.prototype. The prototype property of the result is Skin.prototype.
+     * @param dictionary An object with properties to initialize the result. Only parameters specified in the Dictionary section below will have an effect; other parameters will be ignored.
+     */
     public static template(dictionary: TextureSkinConstructorParam | ColorSkinConstructorParam): SkinConstructor
+    /**
+     * The borders to stroke content objects with, as an object with left, right, top, or bottom number properties, specified in pixels. The default is no borders.
+     */
     public borders: Coordinates
+    /**
+     * This skin's fill color(s), as an array of strings of the form specified in the Color section of this document.
+     * The state property of the content object using the skin determines the index of the array; if state is not an integer, colors from surrounding states are blended. If specified as one string instead of an array, it is treated as an array with a single item. The default fill color is transparent.
+     */
     public fill: Color | Color[]
+    /**
+     * This skin's stroke color(s), as an array of strings of the form specified in the Color section of this document.
+     * The state property of the content object using the skin determines the index of the array; if state is not an integer, colors from surrounding states are blended. If specified as one string instead of an array, it is treated as an array with a single item. The default stroke color is transparent.
+     */
     public stroke: Color | Color[]
+    /**
+     * This skin's texture
+     */
     public texture: Texture
+    /**
+     * If the texture has only an alpha bitmap, the value of the color property will be used to colorize the bitmap. Must be a string or array of strings of the form specified in the Colors section of this document.
+     */
     public color: Color
+    /**
+     * The portion of the texture object to extract, as an object with x, y, width, and height number properties, specified in pixels
+     */
     public bounds: Bounds
+    /**
+     * This skin's height, in pixels
+     */
     public height: number
+    /**
+     * This skin's width, in pixels
+     */
     public width: number
+    /**
+     * This skin's vertical offset between states, in pixels
+     */
     public states?: number
+    /**
+     * This skin's horizontal offset between variants, in pixels
+     */
     public variants?: number
+    /**
+     * This skin's tiles, as an object with left, right, top, and bottom number properties, specified in pixels
+     */
     public tiles?: Coordinates
+    /**
+     * The skin's top tile
+     */
     public top?: number
+    /**
+     * The skin's left tile
+     */
     public right?: number
+    /**
+     * The skin's bottom tile
+     */
     public bottom?: number
+    /**
+     * The skin's left tile
+     */
     public left?: number
   }
   class Transition {
     public constructor(duration: number)
+    /**
+     * Invoked when this transition starts. The extra parameters are the extra parameters of the call to the run function that bound this transition to the specified container object.
+     * @param container The container object that is running the transition
+     * @param extras Zero or more extra parameters
+     */
     public onBegin(container: Container, ...extras: any[]): void
+    /**
+     * Invoked when this transition ends. The extra parameters are the extra parameters of the call to the run function that bound this transition to the specified container object.
+     * @param container The container object that is running the transition
+     * @param extras Zero or more extra parameters
+     */
     public onEnd(container: Container, ...extras: any[]): void
+    /**
+     * Called while this transition is running; called at least twice (with a fraction parameter of 0 and 1) and at most at the display refresh rate--for example, 60 times a second
+     * @param container The container object that is running the transition
+     * @param extras Zero or more extra parameters
+     */
     public onStep(fraction: number): void
+    /**
+     * The duration of the transition, in milliseconds
+     */
+    public duration?: number
   }
+  /**
+   * The container object is a content object that can contain other content objects. In a container, content objects are stored in a doubly linked list. The content objects can also be accessed by index or by name using the content property, for instance container.content(0) or container.content("foo").
+   */
   class Container extends Content {
+    /**
+     * @param behaviorData A parameter that is passed into the onCreate function of this container's behavior. This may be any type of object, including null or a dictionary with arbitrary parameters.
+     * @param dictionary An object with properties to initialize the result.Only parameters specified in the Dictionary section below will have an effect; other parameters will be ignored.
+     */
     public constructor(behaviorData: any, dictionary: ContainerConstructorParam)
+    /**
+     * If true, this container will clip its contents.
+     */
     public clip: boolean
+    /**
+     * The first content object in this container, or null if this container is empty
+     */
     public readonly first: Content | null
+    /**
+     * The last content object in this container, or null if this container is empty
+     */
     public readonly last: Content | null
+    /**
+     * The number of content objects in this container
+     */
     public readonly length: number
+    /**
+     * If true, this container is running a transition object.
+     */
     public readonly transitioning: boolean
+    /**
+     * Adds the specified content object to this container. The content object becomes the last content object in this container.
+     * @param content The content object to add. It must be unbound; that is, its container must be null.
+     */
     public add(content: Content): void
-    public content(at: number | string): Content
+    /**
+     * Returns the specified content object, or undefined if no content with the index or name specified is in this container
+     * @param at The index or name property of the content object you want to access
+     */
+    public content(at: number | string): Content | undefined
+    /**
+     *
+     * @param start The starting index (0 by default)
+     * @param stop The stopping index (this.length by default)
+     */
     public empty(start?: number, stop?: number): void
+    /**
+     * Causes all content objects in this container to trigger an event named by the value of id. The order of traversal is from the first to the last. Traversal halts when a distributed event returns true. Note that the first parameter of a distributed event is the content object that triggers the event, not this container. Additional parameters, if any, of the event are the extra parameters of the firstThat function.
+     * @param id The name of the event to trigger
+     * @param extras Zero or more extra parameters
+     */
     public firstThat(id: string, ...extras: any[]): void
+    /**
+     * Inserts one content object before another in this container as specified by the parameters
+     * @param content The content object to insert. Its container must be null.
+     * @param before The content object before which to insert. Its container must be this container.
+     */
     public insert(content: Content, before: Content): void
+    /**
+     * Causes all content objects in this container to trigger an event named by the value of id. The order of traversal is from the last to the first. Traversal halts when a distributed event returns true. Note that the first parameter of a distributed event is the content object that triggers the event, not this container. Additional parameters, if any, of the event are the extra parameters of the lastThat function.
+     * @param id The name of the event to trigger
+     * @param extras Zero or more extra parameters
+     */
     public lastThat(id: string, ...extras: any[]): void
+    /**
+     * Removes the specified content object from this container
+     * @param content The content object to remove. Its container must be this container.
+     */
     public remove(content: Content): void
+    /**
+     * Replaces one content object with another in this container as specified by the parameters
+     * @param content The content object to replace. Its container must be this container.
+     * @param by The replacing content object. It must be unbound; that is, its container must be null.
+     */
     public replace(content: Content, by: Content): void
+    /**
+     * Runs the specified transition object in this container, binding that object to this container for the duration of the transition. The extra parameters are passed to the onBegin and onEnd functions of the transition object. The container triggers the onTransitionBeginning event before the transition starts and the onTransitionEnded event after the transition ends.
+     * @param transition The transition object to run
+     * @param extras Zero or more extra parameters
+     */
     public run(transition: Transition, ...extras: any[]): void
+    /**
+     * Swaps the specified content objects in this container
+     * @param content0 The content objects to swap. The container of both objects must be this container.
+     * @param content1 The content objects to swap. The container of both objects must be this container.
+     */
     public swap(content0: Content, content1: Content): void
+    /**
+     * This event is triggered when a transition object starts in the specified container object.
+     * @param container The container object that triggered the event
+     */
     public onTransitionBeginning(container: Container): void
+    /**
+     * This event is triggered when a transition object ends in the specified container object.
+     * @param container The container object that triggered the event
+     */
     public onTransitionEnded(container: Container): void
+    /**
+     * Returns a constructor, a function that creates instances of Container.prototype. The prototype property of the result is Container.prototype. The result also provides a template function.
+     * @param anonymous A function that returns an object with properties to initialize the instances that the result creates
+     */
     public static template(anonymous: (param: any) => ContainerConstructorParam): ContainerConstructor
   }
   interface ContainerConstructor {
