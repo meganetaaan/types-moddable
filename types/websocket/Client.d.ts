@@ -1,1 +1,2 @@
-export { Client } from './index'
+import Client from './index'
+export = Client

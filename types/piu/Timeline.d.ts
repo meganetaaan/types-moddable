@@ -1,1 +1,2 @@
-export { Timeline } from './index'
+import Timeline from './index'
+export = Timeline

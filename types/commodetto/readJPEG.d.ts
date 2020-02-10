@@ -1,1 +1,2 @@
-export { JPEG } from './index'
+import JPEG from './index'
+export = JPEG

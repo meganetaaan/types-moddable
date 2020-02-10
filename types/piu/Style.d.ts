@@ -1,1 +1,2 @@
-export { Style } from './index'
+import Style from './index'
+export = Style

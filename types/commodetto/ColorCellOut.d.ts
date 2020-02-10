@@ -1,1 +1,2 @@
-export { ColorCellOut } from './index'
+import ColorCellOut from './index'
+export = ColorCellOut

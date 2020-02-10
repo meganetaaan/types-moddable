@@ -1,1 +1,2 @@
-export { Layout } from './index'
+import Layout from './index'
+export = Layout

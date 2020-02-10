@@ -1,1 +1,2 @@
-export { Row } from './index'
+import Row from './index'
+export = Row

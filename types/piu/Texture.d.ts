@@ -1,1 +1,2 @@
-export { Texture } from './index'
+import Texture from './index'
+export = Texture

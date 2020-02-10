@@ -1,1 +1,2 @@
-export { Content } from './index'
+import Content from './index'
+export = Content

@@ -1,1 +1,2 @@
-export { Application } from './index'
+import Application from './index'
+export = Application

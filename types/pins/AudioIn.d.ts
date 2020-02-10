@@ -1,1 +1,2 @@
-export { AudioIn } from './index'
+import AudioIn from './index'
+export = AudioIn

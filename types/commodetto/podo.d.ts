@@ -1,1 +1,2 @@
-export { Poco } from './index'
+import Poco from './index'
+export = Poco

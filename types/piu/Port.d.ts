@@ -1,1 +1,2 @@
-export { Port } from './index'
+import Port from './index'
+export = Port

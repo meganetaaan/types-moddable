@@ -1,1 +1,2 @@
-export { loadJPEG } from './index'
+import loadJPEG from './index'
+export = loadJPEG

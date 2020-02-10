@@ -1,1 +1,2 @@
-export { Text } from './index'
+import Text from './index'
+export = Text
