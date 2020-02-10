@@ -1,2 +1,2 @@
-import Parser from './index'
+import { Parser } from './index'
 export = Parser

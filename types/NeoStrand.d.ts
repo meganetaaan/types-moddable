@@ -1,7 +1,8 @@
 import NeoPixel from './NeoPixel'
 import { Color } from 'commodetto/index'
 import Timeline from './piu/Timeline'
-declare class NeoStrand extends NeoPixel {
+
+export class NeoStrand extends NeoPixel {
   public start(delay: number): void
   public stop(): void
   public setScheme(schemes: NeoStrandEffect[]): void
@@ -12,7 +13,7 @@ declare class NeoStrand extends NeoPixel {
   public rgbToHsv(r: number, g: number, b: number): Color
   public op(idx: number, rgb: Color, mode?: number, start?: number, end?: number): void
 }
-declare class NeoStrandEffect {
+export class NeoStrandEffect {
   public constructor(dictionary: NeoStrand.NeoStrandEffectConstructorParam)
   public timeline: Timeline
   public reset(effect: NeoStrandEffect): void
@@ -21,7 +22,7 @@ declare class NeoStrandEffect {
   public idle(effect: NeoStrandEffect, ticks: number): void
 }
 
-declare namespace NeoStrand {
+export namespace NeoStrand {
   interface NeoStrandEffectConstructorParam {
     strand: NeoStrand
     start?: number
@@ -72,37 +73,35 @@ declare namespace NeoStrand {
     easing: any
     mode?: number
   }
-  class HueSpan extends NeoStrandEffect {
+  export class HueSpan extends NeoStrandEffect {
     public constructor(dictionary: HueSpanConstructorParam)
     public hue: number
   }
-  class Sine extends NeoStrandEffect {
+  export class Sine extends NeoStrandEffect {
     public constructor(dictionary: SineConstructorParam)
     public effectValue: number
   }
-  class Marqee extends NeoStrandEffect {
+  export class Marqee extends NeoStrandEffect {
     public constructor(dictionary: MarqeeConstructorParam)
     public step: number
   }
-  class Pulse extends NeoStrandEffect {
+  export class Pulse extends NeoStrandEffect {
     public constructor(dictionary: PulseConstructorParam)
     public pulseLoc: number
     public effectValue: number
   }
-  class Pattern extends NeoStrandEffect {
+  export class Pattern extends NeoStrandEffect {
     public constructor(dictionary: PatternConstructorParam)
     public effectValue: number
   }
-  class Dim extends NeoStrandEffect {
+  export class Dim extends NeoStrandEffect {
     public constructor(dictionary: DimConstructorParam)
     public effectValue: number
   }
-  class Ease extends NeoStrandEffect {
+  export class Ease extends NeoStrandEffect {
     public constructor(dictionary: EaseConstructorParam)
     public step: number
   }
 }
 // FIXME
 type Scheme = any
-
-export = NeoPixel

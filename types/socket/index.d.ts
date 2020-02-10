@@ -1,5 +1,5 @@
 declare namespace socket {
-  class Socket {
+  export class Socket {
     public constructor(dictionary: SocketConstructorParam)
     public close(): void
     public read(type: StringConstructor, until?: number | string): string
@@ -13,7 +13,7 @@ declare namespace socket {
     public callback(message: number, value?: any): void
   }
   type Packet = string | ArrayBuffer | number
-  class Listener {
+  export class Listener {
     public constructor(dictionary: ListenerConstructorParam)
     public callback(): void
   }

@@ -1,2 +1,2 @@
-import SPI from './index'
+import { SPI } from './index'
 export = SPI

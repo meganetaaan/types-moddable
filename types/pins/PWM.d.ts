@@ -1,2 +1,2 @@
-import PWM from './index'
+import { PWM } from './index'
 export = PWM

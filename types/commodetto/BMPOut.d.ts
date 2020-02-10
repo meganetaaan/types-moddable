@@ -1,2 +1,2 @@
-import BMPOut from './index'
+import { BMPOut } from './index'
 export = BMPOut

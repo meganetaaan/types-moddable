@@ -1,2 +1,2 @@
-import parseBMP from './index'
+import { parseBMP } from './index'
 export = parseBMP

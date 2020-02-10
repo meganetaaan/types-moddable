@@ -1,2 +1,2 @@
-import Analog from './index'
+import { Analog } from './index'
 export = Analog

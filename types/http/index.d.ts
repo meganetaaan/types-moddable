@@ -1,7 +1,7 @@
-import { SocketConstructorParam, Socket } from 'socket/index'
+import { SocketConstructorParam } from 'socket/index'
 
 declare namespace http {
-  class Request {
+  export class Request {
     public constructor(dictionary: RequestConstructorParam)
     public close(): void
     public read(type: StringConstructor, until?: number | string): string
@@ -11,7 +11,7 @@ declare namespace http {
     // TODO
     public callback(message: number, value1?: any, value2?: any): any
   }
-  class Server {
+  export class Server {
     public constructor(dictionary: ServerConstructorParam)
     public close(): void
     public callback(message: number, value1?: any, value2?: any): any

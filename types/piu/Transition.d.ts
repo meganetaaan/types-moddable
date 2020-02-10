@@ -1,2 +1,2 @@
-import Transition from './index'
+import { Transition } from './index'
 export = Transition

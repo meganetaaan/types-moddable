@@ -1,2 +1,2 @@
-import Servo from './index'
+import { Servo } from './index'
 export = Servo

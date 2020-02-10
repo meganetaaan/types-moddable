@@ -1,14 +1,14 @@
 import { SocketConstructorParam, ListenerConstructorParam } from 'socket/index'
 
 declare namespace websocket {
-  class Client {
+  export class Client {
     public constructor(dictionary: WebSocketClientConstructorParam)
     public close(): void
     public write(message: string | ArrayBuffer): void
     public callback(message: number, value: any): void
   }
 
-  class Server {
+  export class Server {
     public constructor(dictionary: WebSocketServerConstructorParam)
     public close(): void
     public write(message: string | ArrayBuffer): void

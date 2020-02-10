@@ -1,4 +1,3 @@
-import { Bitmap } from './index'
+// import { Bitmap } from './index'
 // FIXME
-declare function parseNFNT(font: any): any
-export = parseNFNT
+export default function parseNFNT(font: any): any

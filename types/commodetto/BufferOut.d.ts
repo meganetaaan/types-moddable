@@ -1,2 +1,2 @@
-import BufferOut from './index'
+import { BufferOut } from './index'
 export = BufferOut

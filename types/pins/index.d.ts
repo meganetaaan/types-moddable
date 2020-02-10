@@ -1,5 +1,5 @@
 declare namespace pins {
-  class AudioIn {
+  export class AudioIn {
     public constructor()
     public close(): void
     public read(samples: number): number
@@ -8,7 +8,7 @@ declare namespace pins {
     public readonly numChannels: number
   }
   namespace AudioIn {}
-  class Digital {
+  export class Digital {
     public constructor(dictionary: Digital.ConstructorParam)
     public constructor(pin: number, mode: number)
     public constructor(port: string, pin: number, mode: number)
@@ -30,7 +30,7 @@ declare namespace pins {
       mode: number
       port?: string
     }
-    class Monitor {
+    export class Monitor {
       public constructor(dictionary: Monitor.ConstructorParam)
       public onChanged(callback: () => void): void
       public read(): number
@@ -51,11 +51,11 @@ declare namespace pins {
       }
     }
   }
-  class Analog {
+  export class Analog {
     public static read(pin: number): number
   }
 
-  class PWM {
+  export class PWM {
     public constructor(dictionary: PWM.ConstructorParam)
     public write(value: number): void
     public close(): void
@@ -67,7 +67,7 @@ declare namespace pins {
     }
   }
 
-  class I2C {
+  export class I2C {
     public constructor(dictionary: I2C.ConstructorParam)
     public constructor(port: number[], pin: number, mode: number)
     public close(): void
@@ -83,7 +83,7 @@ declare namespace pins {
     }
   }
 
-  class SMBus {
+  export class SMBus {
     public constructor(dictionary: SMBus.ConstructorParam)
     public readByte(register: number): number
     public readWord(register: number): number
@@ -97,7 +97,7 @@ declare namespace pins {
     // interface ConstructorParam extends I2C.ConstructorParam {}
   }
 
-  class Servo {
+  export class Servo {
     public constructor(dictionary: Servo.ConstructorParam)
     public write(degrees: number): void
     public writeMicroseconds(us: number): void
@@ -110,7 +110,7 @@ declare namespace pins {
     }
   }
 
-  class SPI {
+  export class SPI {
     // There is no JavaScript API to access SPI at this time.
   }
 }

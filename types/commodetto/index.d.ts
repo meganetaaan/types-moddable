@@ -13,7 +13,7 @@ declare namespace Commodetto {
     kCommodettoBitmapCLUT16,
     kCommodettoBitmapPacked = 0x80,
   }
-  class Bitmap {
+  export class Bitmap {
     public constructor(width: number, height: number, format: number, buffer: ArrayBuffer, offset: number)
     public width: number
     public height: number
@@ -31,7 +31,7 @@ declare namespace Commodetto {
     public static readonly RGBA32: number
     public static readonly CLUT16: number
   }
-  abstract class PixelsOut {
+  export abstract class PixelsOut {
     public constructor(params: { width: number; height: number; pixelFormat: number })
     public begin(x: number, y: number, width: number, height: number): void
     public end(): void
@@ -46,16 +46,16 @@ declare namespace Commodetto {
     public readonly c_dispatch?: HostBuffer
     // clut: any;
   }
-  class HostBuffer extends ArrayBuffer {}
-  class SPIOut extends PixelsOut {}
-  class BufferOut extends PixelsOut {
+  export class HostBuffer extends ArrayBuffer {}
+  export class SPIOut extends PixelsOut {}
+  export class BufferOut extends PixelsOut {
     public readonly bitmap: Bitmap
   }
-  class BMPOut extends PixelsOut {}
-  class RLE4Out extends PixelsOut {}
-  class ColorCellOut extends PixelsOut {}
+  export class BMPOut extends PixelsOut {}
+  export class RLE4Out extends PixelsOut {}
+  export class ColorCellOut extends PixelsOut {}
 
-  class JPEG {
+  export class JPEG {
     public constructor()
     public constructor(jpegData: ArrayBuffer)
     public read(): Bitmap
@@ -65,7 +65,7 @@ declare namespace Commodetto {
     public readonly height: number
   }
 
-  class PNG {
+  export class PNG {
     public static decompress(pngData: ArrayBuffer, hasAlpha?: boolean): Bitmap
     public read(): ArrayBuffer
     public readonly width: number
@@ -75,7 +75,7 @@ declare namespace Commodetto {
     public readonly bpp: number
   }
 
-  abstract class Render {
+  export abstract class Render {
     public constructor(pixelsOut: PixelsOut, dictionary: any)
     public begin(x: number, y: number, width: number, height: number): void
     public begin(x: number, y: number): void
@@ -86,12 +86,12 @@ declare namespace Commodetto {
   }
   type Rectangle = any
 
-  class Convert {
+  export class Convert {
     public constructor(src: Bitmap, dst: Bitmap)
     public convert(src: ArrayBuffer | HostBuffer, dst: ArrayBuffer): void
   }
 
-  class Poco extends Render {
+  export class Poco extends Render {
     public readonly height: number
     public readonly width: number
     public constructor(
@@ -170,12 +170,12 @@ declare namespace Commodetto {
       }
     )
   }
-  function loadJPEG(image: ArrayBuffer): Bitmap
-  function parseBMF(buffer: ArrayBuffer): BMFont
-  function parseRLE(buffer: ArrayBuffer): Bitmap
-  function parseBMP(buffer: ArrayBuffer): Bitmap
+  export function loadJPEG(image: ArrayBuffer): Bitmap
+  export function parseBMF(buffer: ArrayBuffer): BMFont
+  export function parseRLE(buffer: ArrayBuffer): Bitmap
+  export function parseBMP(buffer: ArrayBuffer): Bitmap
 
-  class Stream {
+  export class Stream {
     public constructor(
       buffer: ArrayBuffer,
       dictionary: {

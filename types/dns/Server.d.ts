@@ -1,2 +1,2 @@
-import Server from './index'
+import { Server } from './index'
 export = Server

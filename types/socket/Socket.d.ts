@@ -1,2 +1,2 @@
-import Socket from './index'
+import { Socket } from './index'
 export = Socket

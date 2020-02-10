@@ -1,2 +1,2 @@
-import Convert from './index'
+import { Convert } from './index'
 export = Convert

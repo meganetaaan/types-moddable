@@ -1,2 +1,2 @@
-import PNG from './index'
+import { PNG } from './index'
 export = PNG

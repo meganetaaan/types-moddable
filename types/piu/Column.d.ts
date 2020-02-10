@@ -1,2 +1,2 @@
-import Column from './index'
+import { Column } from './index'
 export = Column

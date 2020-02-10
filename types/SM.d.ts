@@ -8,7 +8,7 @@ declare class SM {
 }
 declare namespace SM {
   type PassKey = number
-  class IOCapability {
+  export class IOCapability {
     public static readonly NoInputNoOutput: number
     public static readonly DisplayOnly: number
     public static readonly KeyboardOnly: number

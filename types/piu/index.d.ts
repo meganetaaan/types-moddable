@@ -1,9 +1,9 @@
 declare namespace piu {
-  class Behavior {}
+  export class Behavior {}
   /**
    * Objects for graphical parts of their user interface, such as buttons, icons, sliders, switches, and tabs.
    */
-  class Content {
+  export class Content {
     /**
      * Content constructor
      * @param behaviorData 	A parameter that is passed into the onCreate function of this content's behavior. This may be any type of object, including null or a dictionary with arbitrary parameters.
@@ -282,14 +282,14 @@ declare namespace piu {
     new (dictionary?: ContentConstructorParam): Content
     template(dictionary: ContentConstructorParam | any): ContentConstructor
   }
-  class Style {
+  export class Style {
     /**
      * @param dictionary An object with properties to initialize the result. Only parameters specified in the Dictionary section below will have an effect; other parameters will be ignored.
      */
     public constructor(dictionary: StyleConstructorParam)
     public measure(string: string): Size
   }
-  class Texture {
+  export class Texture {
     /**
      * @param path The URL of the image file. It must be a file URL.
      */
@@ -312,7 +312,7 @@ declare namespace piu {
      */
     public static template(dictionary: TextureConstructorParam): TextureConstructor
   }
-  class Skin {
+  export class Skin {
     /**
      * Returns a skin instance, an object that inherits from Skin.prototype
      * @param dictionary An object with properties to initialize the result. Only parameters specified in the Dictionary section below will have an effect; other parameters will be ignored.
@@ -391,7 +391,7 @@ declare namespace piu {
      */
     public left?: number
   }
-  class Transition {
+  export class Transition {
     public constructor(duration: number)
     /**
      * Invoked when this transition starts. The extra parameters are the extra parameters of the call to the run function that bound this transition to the specified container object.
@@ -419,7 +419,7 @@ declare namespace piu {
   /**
    * The container object is a content object that can contain other content objects. In a container, content objects are stored in a doubly linked list. The content objects can also be accessed by index or by name using the content property, for instance container.content(0) or container.content("foo").
    */
-  class Container extends Content {
+  export class Container extends Content {
     /**
      * @param behaviorData A parameter that is passed into the onCreate function of this container's behavior. This may be any type of object, including null or a dictionary with arbitrary parameters.
      * @param dictionary An object with properties to initialize the result.Only parameters specified in the Dictionary section below will have an effect; other parameters will be ignored.
@@ -522,12 +522,12 @@ declare namespace piu {
     new (dictionary: ContainerConstructor | any): Container
     template(dictionary: ContainerConstructorParam | any): ContainerConstructor
   }
-  class Label extends Content {
+  export class Label extends Content {
     public constructor(behaviorData: any, dictionary: LabelConstructorParam)
     public string: string
     public static template(anonymous: (param: any) => LabelConstructorParam): LabelConstructor
   }
-  class Port extends Content {
+  export class Port extends Content {
     public drawContent(x: number, y: number, width: number, height: number): void
     public drawLabel(string: string, x: number, y: number, width: number, height: number): void
     public drawSkin(
@@ -587,7 +587,7 @@ declare namespace piu {
     public pushClip(x?: number, y?: number, width?: number, height?: number): void
     public onDraw(port: Port, x: number, y: number, width: number, height: number): void
   }
-  class Text extends Content {
+  export class Text extends Content {
     public constructor(begaviorData: any, dictionary: TextConstructorParam)
     public blocks: {
       behavior: object | null
@@ -612,7 +612,7 @@ declare namespace piu {
     new (dictionary?: TextConstructorParam): Text
     template(dictionary: TextConstructorParam | any): TextConstructor
   }
-  class Application extends Container {
+  export class Application extends Container {
     public constructor(behaviorData: any, dictionary: ApplicationConstructorParam)
     public displayListLength: number
     public commandListLength: number
@@ -621,19 +621,19 @@ declare namespace piu {
     displayListLength?: number
     commandListLength?: number
   }
-  class Column extends Container {}
-  class Layout extends Container {
+  export class Column extends Container {}
+  export class Layout extends Container {
     public onFitHorizontally(layout: Layout, width: number): void
     public onFitVertically(layout: Layout, height: number): void
     public onMeasureHorizontally(layout: Layout, width: number): void
     public onMeasureVertically(layout: Layout, height: number): void
   }
-  class Image extends Content {
+  export class Image extends Content {
     public constructor(behaviorData: any, dictionary: ImageConstructorParam)
     public readonly frameCount: never
     public frameIndex: number
   }
-  class Die extends Layout {
+  export class Die extends Layout {
     public constructor(behaviorData: any, dictionary: ContentConstructorParam)
     public set(x: number, y: number, width: number, height: number): Die
     public sub(x: number, y: number, width: number, height: number): Die
@@ -646,8 +646,8 @@ declare namespace piu {
     public attach(content: Content): void
     public detach(): void
   }
-  class Row extends Container {}
-  class Scroller extends Container {
+  export class Row extends Container {}
+  export class Scroller extends Container {
     public constructor(behaviorData: any, dictionary: ScrollerConstructorParam)
     public readonly constraint: Position
     public loop: boolean
@@ -658,7 +658,7 @@ declare namespace piu {
     public scrollTo(x: number, y: number): void
     public onScrolled(scroller: Scroller): void
   }
-  class Timeline {
+  export class Timeline {
     public constructor()
     public duration: number
     public fraction: number

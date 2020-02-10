@@ -1,2 +1,2 @@
-import Image from './index'
+import { Image } from './index'
 export = Image

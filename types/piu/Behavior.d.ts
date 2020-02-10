@@ -1,2 +1,2 @@
-import Behavior from './index'
+import { Behavior } from './index'
 export = Behavior

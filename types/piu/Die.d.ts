@@ -1,2 +1,2 @@
-import Die from './index'
+import { Die } from './index'
 export = Die

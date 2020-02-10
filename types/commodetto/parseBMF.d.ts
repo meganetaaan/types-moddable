@@ -1,2 +1,2 @@
-import parseBMF from './index'
+import { parseBMF } from './index'
 export = parseBMF

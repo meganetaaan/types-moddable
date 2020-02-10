@@ -2,14 +2,14 @@ declare class GAP {}
 // import GAP from './gap'
 
 declare namespace BTUtils {
-  class Bytes extends ArrayBuffer {
+  export class Bytes extends ArrayBuffer {
     public constructor(bytes: ArrayBuffer, littleEndian: boolean)
     public set(bytes: ArrayBuffer, littleEndian: boolean): void
     public equals(bytes: Bytes): boolean
   }
-  function uuid(strings: string[]): Bytes
-  function address(strings: string[]): Bytes
-  class AdvertisementSerializer {
+  export function uuid(strings: string[]): Bytes
+  export function address(strings: string[]): Bytes
+  export class AdvertisementSerializer {
     public static incompleteUUID16List(
       data: ArrayBuffer
     ): {

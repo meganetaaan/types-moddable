@@ -1,2 +1,2 @@
-import Label from './index'
+import { Label } from './index'
 export = Label
