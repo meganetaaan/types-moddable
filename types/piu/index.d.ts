@@ -1,4 +1,7 @@
 declare namespace piu {
+  /**
+   * The behavior object contains functions corresponding to events triggered by a content object. A content object checks whether its behavior owns or inherits a function property with the name of the event, and if so calls that function, passing itself as the first parameter.
+   */
   export class Behavior {}
   /**
    * Objects for graphical parts of their user interface, such as buttons, icons, sliders, switches, and tabs.
@@ -522,14 +525,49 @@ declare namespace piu {
     new (dictionary: ContainerConstructor | any): Container
     template(dictionary: ContainerConstructorParam | any): ContainerConstructor
   }
+  /**
+   * The label object is a content object that renders a string on a single line with a single style. The string is truncated if it does not fit the bounds of the label object.
+   */
   export class Label extends Content {
     public constructor(behaviorData: any, dictionary: LabelConstructorParam)
+    /**
+     * This label's string
+     */
     public string: string
     public static template(anonymous: (param: any) => LabelConstructorParam): LabelConstructor
   }
+  /**
+   * The port object is a content object that delegates drawing to a script in its behavior that draws using simple Piu graphics commands.
+   * The port object has a clip rectangle (initially the bounds of the port object) that affects all drawing.
+   */
   export class Port extends Content {
+    /**
+     * Draws this port's skin in the position specified
+     * @param x The local position and size of the area in which to draw, in pixels
+     * @param y The local position and size of the area in which to draw, in pixels
+     * @param width The local position and size of the area in which to draw, in pixels
+     * @param height The local position and size of the area in which to draw, in pixels
+     */
     public drawContent(x: number, y: number, width: number, height: number): void
+    /**
+     * Draws the string the way a label instance would, with the style of this port
+     * @param string The string to draw
+     * @param x The local position and size of the area in which to draw, in pixels
+     * @param y The local position and size of the area in which to draw, in pixels
+     * @param width The local position and size of the area in which to draw, in pixels
+     * @param height The local position and size of the area in which to draw, in pixels
+     */
     public drawLabel(string: string, x: number, y: number, width: number, height: number): void
+    /**
+     * Draws the skin the way a content instance would, with the state, variant, and position specified.
+     * @param skin The skin to draw
+     * @param x The local position and size of the area in which to draw, in pixels
+     * @param y The local position and size of the area in which to draw, in pixels
+     * @param width The local position and size of the area in which to draw, in pixels
+     * @param height The local position and size of the area in which to draw, in pixels
+     * @param variant The variant of the skin to draw. If the specified skin defines variants, setting the variant changes the appearance.
+     * @param state The state of the skin to draw. If the specified skin defines states, setting the state changes the appearance.
+     */
     public drawSkin(
       skin: Skin,
       x: number,
@@ -539,6 +577,16 @@ declare namespace piu {
       variant?: number,
       state?: number
     ): void
+    /**
+     * Draws the string the way a label instance would, with the style, color, and position specified.
+     * @param string The string to draw
+     * @param style The style to use to draw the string
+     * @param color The color to draw the string, as a string of the form specified in the Color section of this document
+     * @param x  The local position and size of the area in which to draw, in pixels
+     * @param y The local position and size of the area in which to draw, in pixels
+     * @param width The local position and size of the area in which to draw, in pixels
+     * @param height The local position and size of the area in which to draw, in pixels
+     */
     public drawString(
       string: string,
       style: Style,
@@ -548,6 +596,17 @@ declare namespace piu {
       width: number,
       height: number
     ): void
+    /**
+     * Draws a string with the style, position, and state specified.
+     * @param string The string to draw
+     * @param style The style to use to draw the string
+     * @param x The local position and size of the area in which to draw, in pixels
+     * @param y The local position and size of the area in which to draw, in pixels
+     * @param width The local position and size of the area in which to draw, in pixels
+     * @param height The local position and size of the area in which to draw, in pixels
+     * @param ellipsis If true, the string is truncated to fit the specified bounds. If false, the entire string is drawn, even if it extends beyond the specified bounds.
+     * @param state The state of the style to draw. If the specified style has multiple fill colors, setting the state selects which color to use.
+     */
     public drawStyle(
       string: string,
       style: Style,
@@ -558,6 +617,17 @@ declare namespace piu {
       ellipsis?: boolean,
       state?: number
     ): void
+    /**
+     * Draws the image referenced by the texture.
+     * @param texture The texture to draw
+     * @param color If the texture has only an alpha bitmap, the value of the color property will be used to colorize the bitmap. Must be a string of the form specified in the Color section of this document.
+     * @param x The local position and size of the area in which to draw, in pixels
+     * @param y The local position and size of the area in which to draw, in pixels
+     * @param sx The source area--the position and size of the area to copy pixels from, in pixels. The default is the entire image.
+     * @param sy The source area--the position and size of the area to copy pixels from, in pixels. The default is the entire image.
+     * @param sw The source area--the position and size of the area to copy pixels from, in pixels. The default is the entire image.
+     * @param sh The source area--the position and size of the area to copy pixels from, in pixels. The default is the entire image.
+     */
     public drawTexture(
       texture: Texture,
       color: Color,
@@ -568,7 +638,28 @@ declare namespace piu {
       sw: number,
       sh: number
     ): void
+    /**
+     * Fills the area with the color specified.
+     * @param color The color to draw the image in, as a string of the form specified in the Color section of this document
+     * @param x The local position and size of the area to fill, in pixels
+     * @param y The local position and size of the area to fill, in pixels
+     * @param width The local position and size of the area to fill, in pixels
+     * @param height The local position and size of the area to fill, in pixels
+     */
     public fillColor(color: Color, x: number, y: number, width: number, height: number): void
+    /**
+     * Fills the area with the image. The source area of the image is repeated to cover the destination area.
+     * @param texture The filling image
+     * @param color The color to draw the image in, as a string of the form specified in the Color section of this document
+     * @param x The destination area--the local position and size of the area to copy pixels to, in pixels
+     * @param y The destination area--the local position and size of the area to copy pixels to, in pixels
+     * @param width The destination area--the local position and size of the area to copy pixels to, in pixels
+     * @param height The destination area--the local position and size of the area to copy pixels to, in pixels
+     * @param sx The source area--the position and size of the area to copy pixels from, in pixels. The default is the entire image.
+     * @param sy The source area--the position and size of the area to copy pixels from, in pixels. The default is the entire image.
+     * @param sw The source area--the position and size of the area to copy pixels from, in pixels. The default is the entire image.
+     * @param sh The source area--the position and size of the area to copy pixels from, in pixels. The default is the entire image.
+     */
     public fillTexture(
       texture: Texture,
       color: Color,
@@ -581,26 +672,99 @@ declare namespace piu {
       sw?: number,
       sh?: number
     ): void
+    /**
+     * Invalidates the specified area of this port (or the entire port if no area is specified), which triggers the onDraw event.
+     * @param x The local position and size of the area to invalidate, in pixels
+     * @param y The local position and size of the area to invalidate, in pixels
+     * @param width The local position and size of the area to invalidate, in pixels
+     * @param height The local position and size of the area to invalidate, in pixels
+     */
     public invalidate(x?: number, y?: number, width?: number, height?: number): void
+    /**
+     * Measures the string the way a label instance would, with the style specified
+     * @param string The string to measure
+     * @param style The style to use when measuring the string
+     */
     public measureString(string: string, style: Style): Size
+    /**
+     * Restores the current clip rectangle from this port's clip rectangles stack
+     */
     public popClip(): void
+    /**
+     * Saves the specified clip rectangle to this port's clip rectangles stack
+     * @param x The local position and size of the clip rectangle
+     * @param y The local position and size of the clip rectangle
+     * @param width The local position and size of the clip rectangle
+     * @param height The local position and size of the clip rectangle
+     */
     public pushClip(x?: number, y?: number, width?: number, height?: number): void
+    /**
+     * The port object that triggered the event
+     * @param port The port object that triggered the event
+     * @param x 	The local position and size of the area to draw, in pixels
+     * @param y 	The local position and size of the area to draw, in pixels
+     * @param width 	The local position and size of the area to draw, in pixels
+     * @param height 	The local position and size of the area to draw, in pixels
+     */
     public onDraw(port: Port, x: number, y: number, width: number, height: number): void
   }
+  /**
+   * The text object is a content object that renders a string on multiple lines with multiple styles. There are two ways to modify the string of a text object. An application typically uses only one of these approaches for a specific text object.
+   *   1. Set the string property. This replaces the full string.
+   *   2. Build the string with blocks and spans, between calls to the begin and end functions. This appends characters to the string. This method provides the most control, since each span can have a different style.
+   */
   export class Text extends Content {
     public constructor(begaviorData: any, dictionary: TextConstructorParam)
     public blocks: {
+      /**
+       * When this text is active and the block is touched, the block calls the corresponding function properties of its behavior.
+       */
       behavior: object | null
+      /**
+       * A style instance or null (the default).
+       */
       style: Style | null
+      /**
+       * A string or an array of spans.
+       */
       spans: string | string[]
     }[]
+    /**
+     * This text's string. Setting this string creates one block containing one span that uses this text's style.
+     */
     public string: string
+    /**
+     * Starts the process of defining the string and styles of this text using blocks and spans. The string is reset to empty. The begin function must be called before beginBlock or beginSpan. After defining the string and styles, call end.
+     */
     public begin(): void
+    /**
+     * Creates and opens a new block. The begin function must have been already called without a corresponding end. There cannot be another block already open.
+     * @param style The style of the block
+     * @param behavior The behavior of the block
+     */
     public beginBlock(style?: Style, behavior?: object): void
+    /**
+     * Creates and opens a new span. There must be an open block. There cannot be another open span.
+     * @param style The style of the span
+     * @param behavior The behavior of the span
+     */
     public beginSpan(style: Style, behavior?: object): void
+    /**
+     * Concatenates the specified string to this text. There must be an open span.
+     * @param string The string to concatenate
+     */
     public concat(string: string): void
+    /**
+     * Completes the process of building this text's string and styles using blocks and spans; must be called after begin and before this text can be measured, fit, or rendered
+     */
     public end(): void
+    /**
+     * Closes the open block
+     */
     public endBlock(): void
+    /**
+     * Closes the open span
+     */
     public endSpan(): void
     public static template(anonymous: (param: any) => TextConstructorParam): TextConstructor
   }
@@ -617,54 +781,322 @@ declare namespace piu {
     public displayListLength: number
     public commandListLength: number
   }
+  /**
+   * All Piu applications must have an application object at the root of their containment hierarchy. All other content objects must be added to the application to appear on screen.
+   * There is no default object, so you have to create one yourself and export it in the main module.
+   * Alternatively, you can export a function that returns an application object.
+   * @example
+   * export default new Application();
+   *
+   * @example
+   * export default function() {
+   *   return new Application();
+   * }
+   */
   interface ApplicationConstructorParam extends ContainerConstructorParam {
+    /**
+     * The size of the display list buffer in bytes for targets using the Poco rendering engine
+     */
     displayListLength?: number
+    /**
+     * The size of the command list buffer in bytes used for holding Piu drawing operations
+     */
     commandListLength?: number
+    /**
+     * The number of touch events that can trigger at the same time
+     */
+    touchCount?: number
   }
+  /**
+   * The column object is a container object that arranges its contents vertically.
+   */
   export class Column extends Container {}
+  /**
+   * The layout object is a container object that delegates positioning and sizing of its contents to a script in its behavior.
+   * When its width is measured, the layout object triggers the onMeasureHorizontally event, and the behavior can modify the measured width of the layout object or the coordinates of its contents.
+   * When its height is measured, the layout object triggers the onMeasureVertically event, and the behavior can modify the measured height of the layout object or the coordinates of its contents.
+   */
   export class Layout extends Container {
+    /**
+     * This event is triggered when the fitted width of the layout object is calculated. Once this is triggered, the behavior can modify the coordinates of its contents. Returns the fitted width of the layout object, in pixels.
+     * @param layout The layout object that triggered the event
+     * @param width The fitted width of the layout object, in pixels
+     */
     public onFitHorizontally(layout: Layout, width: number): void
+    /**
+     * This event is triggered when the fitted height of the layout object is calculated. Once this is triggered, the behavior can modify the coordinates of its contents. Returns the height of the layout object, in pixels.
+     * @param layout The layout object that triggered the event
+     * @param height The fitted height of the layout object, in pixels
+     */
     public onFitVertically(layout: Layout, height: number): void
+    /**
+     * This event is triggered when the measured width of the layout object is calculated. Returns the measured width of the layout object, in pixels.
+     * @param layout The layout object that triggered the event
+     * @param width The fitted width of the layout object, in pixels
+     */
     public onMeasureHorizontally(layout: Layout, width: number): void
+    /**
+     * This event is triggered when the measured height of the layout object is calculated. Returns the measured height of the layout object, in pixels.
+     * @param layout The layout object that triggered the event
+     * @param height The fitted height of the layout object, in pixels
+     */
     public onMeasureVertically(layout: Layout, height: number): void
   }
+  /**
+   * The image object is a content object that displays images.
+   * Image assets may be a GIF, JPEG, or PNG file, or a folder of JPEG and PNG files. The images example provides an example for every supported type.
+   * Assets must be defined in the resources of your manifest. The quality of JPEG and PNG files can be set to a value between 1 and 100; higher numbers correspond to higher quality.
+   * ```json
+"resources":{
+	"*-image(100)": [
+		"$(MODDABLE)/examples/assets/images/screen1",
+	],
+	"*-image(40)": [
+		"$(MODDABLE)/examples/assets/images/screen2",
+	]
+},
+```
+   * Images in a folder are used as frames of a single animated image. The frame rate is determined by the name of the folder. For example, the fish.15fps folder from the example images folder tells the application to run at 15 frames per second. In the manifest, the .15fps is dropped from the path.
+   * ```json
+"resources":{
+	"*-image": [
+		"$(MODDABLE)/examples/assets/images/fish",
+	],
+}
+```
+   * The frame rate of a GIF is set in the file itself and cannot be changed by the application.
+   * All supported image types are compressed into a single resource with a .cs extension. These are the files that should be referenced in the application's script code. For example, to create image objects using the assets mentioned above, the application would use the paths "screen1.cs", "screen2.cs", and "street.cs".
+   */
   export class Image extends Content {
     public constructor(behaviorData: any, dictionary: ImageConstructorParam)
+    /**
+     * The total number of frames in this image
+     */
     public readonly frameCount: never
+    /**
+     * The index of the current frame
+     */
     public frameIndex: number
   }
+  /**
+   * The die object is a layout object that allows you to “die cut” its contents with a region, minimizing the areas to invalidate and to update. These are useful for building animations and transitions on constrained devices that cannot update every screen pixel at every frame.
+   * The die object maintains two regions:
+   *   - the work region that the available operations build,
+   *   - the clip region that clips the contents of the die object
+   * Both regions are initially empty.
+   */
   export class Die extends Layout {
     public constructor(behaviorData: any, dictionary: ContentConstructorParam)
     public set(x: number, y: number, width: number, height: number): Die
     public sub(x: number, y: number, width: number, height: number): Die
+    /**
+     * Intersects the rectangle with the work region and returns this.
+     * @param x A local rectangle, in pixels
+     * @param y A local rectangle, in pixels
+     * @param width A local rectangle, in pixels
+     * @param height A local rectangle, in pixels
+     */
     public and(x: number, y: number, width: number, height: number): Die
+    /**
+     * Inclusively unions the rectangle with the work region and returns this.
+     * @param x A local rectangle, in pixels
+     * @param y A local rectangle, in pixels
+     * @param width A local rectangle, in pixels
+     * @param height A local rectangle, in pixels
+     */
     public or(x: number, y: number, width: number, height: number): Die
+    /**
+     * Exclusively unions the work region with the rectangle and returns this.
+     * @param x A local rectangle, in pixels
+     * @param y A local rectangle, in pixels
+     * @param width A local rectangle, in pixels
+     * @param height A local rectangle, in pixels
+     */
     public xor(x: number, y: number, width: number, height: number): Die
+    /**
+     * Sets the work region to the bounds of this die object and returns this.
+     */
     public fill(): Die
+    /**
+     * Empties the work region and returns this.
+     */
     public empty(): Die
+    /**
+     * Copies the work region into the current region, and invalidates only the difference between the work and the clip regions.
+     */
     public cut(): void
+    /**
+     * Binds the die object to the containment hierarchy by replacing the specified content object in the content's container with this die object and adding the content object to this die object.
+     * @param content The content object to attach
+     */
     public attach(content: Content): void
+    /**
+     * Unbind this die object from the content hierarchy by removing the first content object from this die object and replacing this die object in its container with the removed content object.
+     */
     public detach(): void
   }
+  /**
+   * The row object is a container object that arranges its contents horizontally.
+   */
   export class Row extends Container {}
+  /**
+   * The scroller object is a container object that scrolls its first content object horizontally and vertically.
+   */
   export class Scroller extends Container {
     public constructor(behaviorData: any, dictionary: ScrollerConstructorParam)
+    /**
+     * The constrained scroll offsets of this scroller, as an object with x and y number properties. The scroll offsets when this scroller is tracking may be different from the constrained scroll offsets.
+     */
     public readonly constraint: Position
+    /**
+     * If true, this content will restart its clock when its time equals its duration
+     */
     public loop: boolean
+    /**
+     * The scroll offsets of this scroller, as an object with x and y number properties, specified in pixels
+     */
     public scroll: Position
+    /**
+     * If true, this scroller is tracking. When tracking, the scroller does not constrain its scroll offsets.
+     */
     public tracking: boolean
+    /**
+     * Scrolls this scroller to reveal the specified area
+     * @param bounds The local position and size of the area to reveal, as an object with x, y, width, and height properties, specified in pixels
+     */
     public reveal(bounds: Bounds): void
+    /**
+     * Adds the deltas to the scroll offsets of this scroller
+     * @param dx The deltas by which to scroll this scroller, in pixels
+     * @param dy The deltas by which to scroll this scroller, in pixels
+     */
     public scrollBy(dx: number, dy: number): void
+    /**
+     * Changes the scroll offsets of this scroller
+     * @param x The offsets to which to scroll this scroller, in pixels
+     * @param y The offsets to which to scroll this scroller, in pixels
+     */
     public scrollTo(x: number, y: number): void
+    /**
+     * This event is triggered when the specified scroller object scrolls.
+     * When triggered by a scroller, this event is also triggered by all the contents of the scroller. This makes it easier to implement scrollbars, for example.
+     * @param scroller The scroller object that triggered the event
+     */
     public onScrolled(scroller: Scroller): void
   }
+  /**
+   * The timeline object provides a mechanism for sequencing and running a collection of tweens. This is useful for managing transitions between Piu screens and other animations.
+   * Tweens work by taking in a target object and an object that specifies a list of properties and values. When the tween is set to a specific fraction, the appropriate properties of the target object are updated with values between their initial value and the destination value. The specifics of how this works are determined by the type of tween ("on", "from", or "to", as described below) and the easing function used for the tween.
+   * The application manages all of the tweens in a timeline at once by seeking to a particular point in the timeline. This is usually driven by the onTimeChanged function of a content object.
+   * The Piu Timeline implementation is based on the TimelineLite class developed by GreenSock.
+   * Note that the Timeline class must be imported into your application to be used:
+   */
   export class Timeline {
     public constructor()
+    /**
+     * How long this timeline will take to complete once started, in ms.
+     */
     public duration: number
+    /**
+     * The fraction of this timeline that has completed, as a decimal between 0 and 1. Setting the fraction is equivalent to calling `seekTo(fraction * duration)`.
+     */
     public fraction: number
+    /**
+     * The amount of time the timeline has completed, in ms. This should not be modified directly — use seekTo(time) instead.
+     */
     public time: number
+    /**
+     * Adds a "from tween" to the timeline. A "from tween" eases the properties of the target object from the values specified in the toProperties object to the original values of the target object over duration ms.
+     * Returns this timeline, useful for chaining together multiple to, from, and on calls.
+     * @param target The object that will have its properties tweened by the timeline.
+     * @param fromProperties The keys of this object are the properties of the target object that will be tweened by the timeline. Their values are the starting values the properties of the target object will have at the begining of the tween.
+     * @param duration The duration of the tween in ms.
+     * @param easing An easing function to use for the tween. If null is provided, the tween will use a linear easing function.
+     * @param delay The number of ms after the previous tween in the timeline completes that this one should begin. If this number is negative, the tween will begin before the prior tween completes. If no duration is provided, the tween will begin immediately upon completion of the prior tween.
+     */
     public from(target: object, fromProperties: object, duration: number, easing?: string, delay?: number): Timeline
+    /**
+     * Adds an "on tween" to the timeline. An "on tween" eases the values of the target object through a sequence of steps as specified by arrays in the onProperties object over duration ms.
+     * Returns this timeline, useful for chaining together multiple to, from, and on calls.
+     * @param target The object that will have its properties tweened by the timeline.
+     * @param onProperties The keys of this object are the properties of the target object that will be tweened by the timeline. Their values are arrays of values that the tween will ease between over the duration of the timeline.
+     * @param duration The duration of the tween in ms.
+     * @param easing An easing function to use for the tween. If null is provided, the tween will use a linear easing function.
+     * @param delay The number of ms after the previous tween in the timeline completes that this one should begin. If this number is negative, the tween will begin before the prior tween completes. If no duration is provided, the tween will begin immediately upon completion of the prior tween.
+     * @example ```
+let sampleContainer = new Container(null, {
+	top: 0, bottom: 0, left: 0, right: 0, skin: new Skin({ fill: "white" }),
+	contents: [
+		Content(null, { top: 0, height: 50, left: 0, width: 50, skin: new Skin({ fill: ["blue", "red"] }) })
+	],
+	Behavior: class extends Behavior {
+		onDisplaying(container) {
+			this.startAnimation(container);
+		}
+		startAnimation(container) {
+			let timeline = this.timeline = new Timeline();
+			let l=0, r=150, b=150, t=0;
+			timeline.on(container.first, { x: [l, r, r, l, l], y: [t, t, b, b, t], state: [0, 1] }, 1000, Math.quadEaseInOut, 500);
+			container.duration = timeline.duration;
+			timeline.seekTo(0);
+			container.time = 0;
+			container.start();
+		}
+		onTimeChanged(container) {
+			let time = container.time;
+			if (this.reverse) time = container.duration - time;
+			this.timeline.seekTo(time);
+		}
+		onFinished(container) {
+			this.reverse = !this.reverse;
+			this.startAnimation(container);
+		}
+	}
+});
+application.add(sampleContainer);
+```
+     */
+    public on(target: object, onProperties: object, duration: number, easing?: number, delay?: number): Timeline
+    /**
+     * Causes this timeline to jump its tweens to the specified time. This sets the properties of the tweens' target objects.
+     * @param time The position in the Timeline to seek to.
+     * @example ```
+let sampleStyle = new Style({ font: "600 28px Open Sans", color: ["blue", "white"] });
+let sampleColumn = new Column(null, {
+	top: 0, bottom: 0, left: 0, right: 0, 
+	skin: new Skin({ fill: "white" }), style: sampleStyle,
+	contents: [
+		Label(null, { top: 90, height: 28, left: 80, string: "Hello", state: 0 }),
+		Label(null, { top: 2, height: 28, left: 80, string: "Moddable", state: 0 }),
+	],
+	Behavior: class extends Behavior {
+		onDisplaying(column) {
+			let timeline = this.timeline = new Timeline();
+			timeline.to(column.first, { x: -column.first.width, state: 1 }, 1000, Math.quadEaseOut, 1000)
+				.to(column.last, { x: application.width, state: 1 }, 800, Math.quadEaseOut, -800);
+			column.duration = timeline.duration;
+			timeline.seekTo(0);
+			column.time = 0;
+			column.start();
+		}
+		onTimeChanged(column) {
+			this.timeline.seekTo(column.time);
+		}
+	}
+});
+application.add(sampleColumn);
+```
+     */
     public seekTo(time: number): void
+    /**
+     * Adds a "to tween" to the timeline. A "to tween" eases the properties of the target object from its current values to the desired values specified in the toProperties object over duration ms.
+     * Returns this timeline, useful for chaining together multiple to, from, and on calls.
+     * @param target The object that will have its properties tweened by the timeline.
+     * @param fromProperties The keys of this object are the properties of the target object that will be tweened by the timeline. Their values are the destination values the properties of the target object will have when the tween is complete.
+     * @param duration The duration of the tween in ms.
+     * @param easing An easing function to use for the tween. If null is provided, the tween will use a linear easing function.
+     * @param delay The number of ms after the previous tween in the timeline completes that this one should begin. If this number is negative, the tween will begin before the prior tween completes. If no duration is provided, the tween will begin immediately upon completion of the prior tween.
+     */
     public to(target: object, fromProperties: object, duration: number, easing?: string, delay?: number): Timeline
   }
   interface ContentConstructorParam extends Coordinates, Size, ContentState, TimeProperty, TouchProperty {
@@ -803,7 +1235,10 @@ declare namespace piu {
     contents: Content[]
   }
   interface ScrollerConstructorParam extends ContainerConstructorParam {
-    loop: boolean
+    /**
+     * If true, this content will restart its clock when its time equals its duration
+     */
+    loop?: boolean
   }
   interface TextureConstructorParam {
     path: string
