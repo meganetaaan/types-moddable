@@ -776,11 +776,6 @@ declare namespace piu {
     new (dictionary?: TextConstructorParam): Text
     template(dictionary: TextConstructorParam | any): TextConstructor
   }
-  export class Application extends Container {
-    public constructor(behaviorData: any, dictionary: ApplicationConstructorParam)
-    public displayListLength: number
-    public commandListLength: number
-  }
   /**
    * All Piu applications must have an application object at the root of their containment hierarchy. All other content objects must be added to the application to appear on screen.
    * There is no default object, so you have to create one yourself and export it in the main module.
@@ -793,6 +788,21 @@ declare namespace piu {
    *   return new Application();
    * }
    */
+  export class Application extends Container {
+    public constructor(behaviorData: any, dictionary: ApplicationConstructorParam)
+    /**
+     * The size of the display list buffer in bytes for targets using the Poco rendering engine
+     */
+    public displayListLength: number
+    /**
+     * The size of the command list buffer in bytes used for holding Piu drawing operations
+     */
+    public commandListLength: number
+    /**
+     * The number of touch events that can trigger at the same time
+     */
+    public touchCount: number
+  }
   interface ApplicationConstructorParam extends ContainerConstructorParam {
     /**
      * The size of the display list buffer in bytes for targets using the Poco rendering engine
