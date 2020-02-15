@@ -1222,7 +1222,7 @@ application.add(sampleColumn);
     /**
      * A function that creates instances of Style.prototype. This content will create an instance of this style, and set its style parameter to the created instance.
      */
-    Style?: () => Style
+    Style?: new () => Style
     /**
      * If true, this content is visible.
      */
