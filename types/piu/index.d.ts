@@ -150,7 +150,12 @@ declare namespace piu {
      * Returns a constructor, a function that creates instances of Content.prototype. The prototype property of the result is Content.prototype. The result also provides a template function.
      * @param anonymous	A function that returns an object with properties to initialize the instances that the result creates
      */
-    public static template(anonymous: (param: any) => ContentConstructorParam): ContentConstructor
+    public static template<T>(
+      this: { new (...args: any): any },
+      func: (param: any) => ConstructorParameters<typeof Content>[1]
+    ): TemplatedConstructor<Parameters<typeof func>[0], typeof Content>
+
+    public static getAll<T>(this: { new (): T }): T[]
     /**
      * The previous content object in this content's container; null if this content is the first content object of this content's container or if this content has no container
      */
@@ -281,10 +286,12 @@ declare namespace piu {
      */
     public height: number
   }
-  interface ContentConstructor {
-    new (dictionary?: ContentConstructorParam): Content
-    template(dictionary: ContentConstructorParam | any): ContentConstructor
+
+  export interface TemplatedConstructor<P, C extends new (...args: any) => any> {
+    new (dictionary: P): InstanceType<C>
+    template<T>(anonymous: (param: T) => Partial<ConstructorParameters<C>[1]>): TemplatedConstructor<T, C>
   }
+
   export class Style {
     /**
      * @param dictionary An object with properties to initialize the result. Only parameters specified in the Dictionary section below will have an effect; other parameters will be ignored.
@@ -519,12 +526,11 @@ declare namespace piu {
      * Returns a constructor, a function that creates instances of Container.prototype. The prototype property of the result is Container.prototype. The result also provides a template function.
      * @param anonymous A function that returns an object with properties to initialize the instances that the result creates
      */
-    public static template(anonymous: (param: any) => ContainerConstructorParam): ContainerConstructor
+    public static template<T>(
+      func: (param: any) => ConstructorParameters<typeof Container>[1]
+    ): TemplatedConstructor<Parameters<typeof func>[0], typeof Container>
   }
-  interface ContainerConstructor {
-    new (dictionary: ContainerConstructor | any): Container
-    template(dictionary: ContainerConstructorParam | any): ContainerConstructor
-  }
+
   /**
    * The label object is a content object that renders a string on a single line with a single style. The string is truncated if it does not fit the bounds of the label object.
    */
@@ -534,7 +540,13 @@ declare namespace piu {
      * This label's string
      */
     public string: string
-    public static template(anonymous: (param: any) => LabelConstructorParam): LabelConstructor
+    /**
+     * Returns a constructor, a function that creates instances of Label.prototype. The prototype property of the result is Label.prototype. The result also provides a template function.
+     * @param anonymous A function that returns an object with properties to initialize the instances that the result creates
+     */
+    public static template<T>(
+      func: (param: any) => ConstructorParameters<typeof Label>[1]
+    ): TemplatedConstructor<Parameters<typeof func>[0], typeof Label>
   }
   /**
    * The port object is a content object that delegates drawing to a script in its behavior that draws using simple Piu graphics commands.
@@ -707,6 +719,13 @@ declare namespace piu {
      * @param height 	The local position and size of the area to draw, in pixels
      */
     public onDraw(port: Port, x: number, y: number, width: number, height: number): void
+    /**
+     * Returns a constructor, a function that creates instances of Port.prototype. The prototype property of the result is Port.prototype. The result also provides a template function.
+     * @param anonymous A function that returns an object with properties to initialize the instances that the result creates
+     */
+    public static template<T>(
+      func: (param: any) => ConstructorParameters<typeof Port>[1]
+    ): TemplatedConstructor<Parameters<typeof func>[0], typeof Port>
   }
   /**
    * The text object is a content object that renders a string on multiple lines with multiple styles. There are two ways to modify the string of a text object. An application typically uses only one of these approaches for a specific text object.
@@ -766,7 +785,13 @@ declare namespace piu {
      * Closes the open span
      */
     public endSpan(): void
-    public static template(anonymous: (param: any) => TextConstructorParam): TextConstructor
+    /**
+     * Returns a constructor, a function that creates instances of Text.prototype. The prototype property of the result is Text.prototype. The result also provides a template function.
+     * @param anonymous A function that returns an object with properties to initialize the instances that the result creates
+     */
+    public static template<T>(
+      func: (param: any) => ConstructorParameters<typeof Text>[1]
+    ): TemplatedConstructor<Parameters<typeof func>[0], typeof Text>
   }
   interface LabelConstructor extends ContentConstructor {
     new (dictionary?: LabelConstructorParam): Label
@@ -802,6 +827,13 @@ declare namespace piu {
      * The number of touch events that can trigger at the same time
      */
     public touchCount: number
+    /**
+     * Returns a constructor, a function that creates instances of Application.prototype. The prototype property of the result is Application.prototype. The result also provides a template function.
+     * @param anonymous A function that returns an object with properties to initialize the instances that the result creates
+     */
+    public static template<T>(
+      func: (param: any) => ConstructorParameters<typeof Application>[1]
+    ): TemplatedConstructor<Parameters<typeof func>[0], typeof Application>
   }
   interface ApplicationConstructorParam extends ContainerConstructorParam {
     /**
@@ -820,7 +852,15 @@ declare namespace piu {
   /**
    * The column object is a container object that arranges its contents vertically.
    */
-  export class Column extends Container {}
+  export class Column extends Container {
+    /**
+     * Returns a constructor, a function that creates instances of Column.prototype. The prototype property of the result is Column.prototype. The result also provides a template function.
+     * @param anonymous A function that returns an object with properties to initialize the instances that the result creates
+     */
+    public static template<T>(
+      func: (param: any) => ConstructorParameters<typeof Column>[1]
+    ): TemplatedConstructor<Parameters<typeof func>[0], typeof Column>
+  }
   /**
    * The layout object is a container object that delegates positioning and sizing of its contents to a script in its behavior.
    * When its width is measured, the layout object triggers the onMeasureHorizontally event, and the behavior can modify the measured width of the layout object or the coordinates of its contents.
@@ -851,6 +891,13 @@ declare namespace piu {
      * @param height The fitted height of the layout object, in pixels
      */
     public onMeasureVertically(layout: Layout, height: number): void
+    /**
+     * Returns a constructor, a function that creates instances of Layout.prototype. The prototype property of the result is Layout.prototype. The result also provides a template function.
+     * @param anonymous A function that returns an object with properties to initialize the instances that the result creates
+     */
+    public static template<T>(
+      func: (param: any) => ConstructorParameters<typeof Layout>[1]
+    ): TemplatedConstructor<Parameters<typeof func>[0], typeof Layout>
   }
   /**
    * The image object is a content object that displays images.
@@ -887,6 +934,13 @@ declare namespace piu {
      * The index of the current frame
      */
     public frameIndex: number
+    /**
+     * Returns a constructor, a function that creates instances of Image.prototype. The prototype property of the result is Image.prototype. The result also provides a template function.
+     * @param anonymous A function that returns an object with properties to initialize the instances that the result creates
+     */
+    public static template<T>(
+      func: (param: any) => ConstructorParameters<typeof Image>[1]
+    ): TemplatedConstructor<Parameters<typeof func>[0], typeof Image>
   }
   /**
    * The die object is a layout object that allows you to “die cut” its contents with a region, minimizing the areas to invalidate and to update. These are useful for building animations and transitions on constrained devices that cannot update every screen pixel at every frame.
@@ -944,11 +998,26 @@ declare namespace piu {
      * Unbind this die object from the content hierarchy by removing the first content object from this die object and replacing this die object in its container with the removed content object.
      */
     public detach(): void
+    /**
+     * Returns a constructor, a function that creates instances of Die.prototype. The prototype property of the result is Die.prototype. The result also provides a template function.
+     * @param anonymous A function that returns an object with properties to initialize the instances that the result creates
+     */
+    public static template<T>(
+      func: (param: any) => ConstructorParameters<typeof Die>[1]
+    ): TemplatedConstructor<Parameters<typeof func>[0], typeof Die>
   }
   /**
    * The row object is a container object that arranges its contents horizontally.
    */
-  export class Row extends Container {}
+  export class Row extends Container {
+    /**
+     * Returns a constructor, a function that creates instances of Row.prototype. The prototype property of the result is Row.prototype. The result also provides a template function.
+     * @param anonymous A function that returns an object with properties to initialize the instances that the result creates
+     */
+    public static template<T>(
+      func: (param: any) => ConstructorParameters<typeof Row>[1]
+    ): TemplatedConstructor<Parameters<typeof func>[0], typeof Row>
+  }
   /**
    * The scroller object is a container object that scrolls its first content object horizontally and vertically.
    */
@@ -993,6 +1062,13 @@ declare namespace piu {
      * @param scroller The scroller object that triggered the event
      */
     public onScrolled(scroller: Scroller): void
+    /**
+     * Returns a constructor, a function that creates instances of Scroller.prototype. The prototype property of the result is Scroller.prototype. The result also provides a template function.
+     * @param anonymous A function that returns an object with properties to initialize the instances that the result creates
+     */
+    public static template<T>(
+      func: (param: any) => ConstructorParameters<typeof Scroller>[1]
+    ): TemplatedConstructor<Parameters<typeof func>[0], typeof Scroller>
   }
   /**
    * The timeline object provides a mechanism for sequencing and running a collection of tweens. This is useful for managing transitions between Piu screens and other animations.
@@ -1129,7 +1205,7 @@ application.add(sampleColumn);
     /**
      * A function that creates instances of Skin.prototype. This content will create an instance of this skin, and set its skin parameter to the created instance.
      */
-    Skin?: () => Skin
+    Skin?: SkinConstructor
     /**
      * This content's style
      */
@@ -1270,14 +1346,8 @@ application.add(sampleColumn);
   interface ContentConstructor {
     new (name: string, dictionary: ContentConstructorParam): Content
   }
-  interface TextureConstructor {
-    new (dictionary?: TextureConstructorParam): Texture
-    template(dictionary: TextureConstructorParam | any): TextureConstructor
-  }
-  interface SkinConstructor {
-    new (dictionary?: SkinConstructorParam): Skin
-    template(dictionary: SkinConstructorParam | any): SkinConstructor
-  }
+  type TextureConstructor = new () => Texture
+  type SkinConstructor = new () => Skin
   type SkinConstructorParam = ColorSkinConstructorParam | TextureSkinConstructorParam
   interface TextStyleConstructorParam extends StyleConstructorParamBase {
     leading?: number
