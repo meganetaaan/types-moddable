@@ -297,7 +297,16 @@ declare namespace piu {
      * @param dictionary An object with properties to initialize the result. Only parameters specified in the Dictionary section below will have an effect; other parameters will be ignored.
      */
     public constructor(dictionary: StyleConstructorParam)
+    /**
+     * Calculates the size of the string rendered with this style (and any inherited styles, if this style is attached to a content object), and returns it as an object with width and height properties, specified in pixels
+     * @param string The string to measure
+     */
     public measure(string: string): Size
+    /**
+     * Returns a constructor, a function that creates instances of Style.prototype. The prototype property of the result is Style. The result also provides a template function.
+     * @param dictionary An object with properties to initialize the result. Only parameters specified in the Dictionary section below will have an effect; other parameters will be ignored.
+     */
+    public static template(dictionary: StyleConstructorParam): new () => Style
   }
   export class Texture {
     /**
