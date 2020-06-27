@@ -1,5 +1,5 @@
 {
-  "name": "@types/moddable",
+  "name": "@meganetaaan/types-moddable",
   "version": "0.1.1",
   "description": "Contributed type declarations of Moddable SDK",
   "types": "index.d.ts",
