@@ -15,7 +15,7 @@
   },
   "type": "./types",
   "homepage": "https://github.com/meganetaaan/types-moddable#readme",
-  "private": true,
+  "private": false,
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^1.13.0",
     "@typescript-eslint/parser": "^1.13.0",
