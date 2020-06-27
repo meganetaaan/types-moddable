@@ -1,6 +1,6 @@
 {
   "name": "@types/moddable",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Contributed type declarations of Moddable SDK",
   "types": "index.d.ts",
   "repository": {
