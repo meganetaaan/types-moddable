@@ -1,5 +1,5 @@
-import { IOCapability } from './SM'
-import { Bytes } from './BTUtils'
+import { IOCapability } from './sm'
+import { Bytes } from './btutils'
 
 declare class BLEClient {
   public onReady(): void
